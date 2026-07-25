@@ -48,6 +48,14 @@
             letter-spacing: 1px;
             cursor: pointer;
             font-family: Georgia, serif;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-inner {
+            flex-wrap: wrap;
+            height: auto;
+            min-height: 60px;
+            padding: 10px 24px;
         }
         .nav-links {
             display: flex;
@@ -112,11 +120,11 @@
             display: inline-block;
             background: var(--gold);
             color: var(--dark);
-            padding: 14px 40px;
+            padding: 16px 48px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
             font-family: Arial, sans-serif;
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: pointer;
@@ -133,6 +141,8 @@
             border: 2px solid var(--gold);
             box-shadow: none;
             margin-left: 12px;
+            font-size: 14px;
+            padding: 12px 32px;
         }
         .hero-btn.secondary:hover {
             background: rgba(212,168,73,0.1);
@@ -425,13 +435,23 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 34px; }
             .hero { min-height: 420px; }
-            .nav-links { gap: 14px; }
-            .nav-links a { font-size: 13px; }
+            .nav-logo { font-size: 15px; letter-spacing: 0.5px; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 12px; white-space: nowrap; }
             .about-grid { grid-template-columns: 1fr; gap: 32px; }
             .book-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
             .about-cards { grid-template-columns: 1fr; }
             .book-scene-strip { height: 120px; }
             .book-scene-strip .strip-text { padding-top: 40px; font-size: 15px; }
+            .hero-btn { font-size: 14px; padding: 12px 28px; }
+            .hero-btn.secondary { margin-left: 0; margin-top: 10px; display: block; }
+        }
+        @media (max-width: 480px) {
+            .nav-logo { font-size: 13px; }
+            .nav-links { gap: 8px; }
+            .nav-links a { font-size: 11px; }
+            .hero h1 { font-size: 28px; }
+            .hero-btn { font-size: 13px; padding: 10px 22px; }
         }
     </style>
 </head>
@@ -461,9 +481,10 @@
         <div class="hero-content">
             <h1>Stories Worth<br><span class="accent">Reading.</span></h1>
             <p>Instant digital downloads. Read on any device, anytime.</p>
-            <div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;">
                 <button class="hero-btn" onclick="showPage('books')">Browse Books</button>
-                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Play Free Games</a>
+                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Play Games</a>
             </div>
         </div>
     </div>
