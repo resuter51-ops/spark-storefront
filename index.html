@@ -498,7 +498,7 @@
     <div class="section">
         <div class="section-header">
             <span class="section-label">Featured Books</span>
-            <h2 class="section-title">The Collection</h2>
+            <h2 class="section-title">Words and Wheels \u2014 The Collection</h2>
             <p class="section-subtitle">Explore the full collection of eBooks &mdash; fiction, thriller, memoir, and creative nonfiction.</p>
         </div>
         <div class="book-grid" id="featured-grid"></div>
@@ -510,7 +510,7 @@
             <div class="about-grid">
                 <div class="about-text">
                     <span class="section-label">Our Story</span>
-                    <h2 style="font-size:30px;color:var(--navy);margin-bottom:16px;font-weight:normal;">About Words and Wheels</h2>
+                    <h2 style="font-size:30px;color:var(--navy);margin-bottom:16px;font-weight:normal;">Words and Wheels \u2014 About</h2>
                     <p>Words and Wheels was born from a simple belief: great stories should be accessible to everyone, anywhere, at any moment. We publish and sell digital books that you can start reading within seconds of purchase.</p>
                     <p>Our catalog spans fiction, thriller, memoir, and creative nonfiction. Whether it's the gripping Salvager series by Jack Baptiste, the warm heart of Happiness Finds Big Man, or the nostalgic world of Valley Fair, every book we carry is chosen because it earns its place on your reading list.</p>
                     <p>All books are published by R. E. Suter and available exclusively as instant digital downloads. No shipping. No waiting. Just great reading.</p>
@@ -538,7 +538,7 @@
     <div class="section">
         <div class="section-header">
             <span class="section-label">All Books</span>
-            <h2 class="section-title">The Collection</h2>
+            <h2 class="section-title">Words and Wheels \u2014 The Collection</h2>
             <p class="section-subtitle">Explore the full collection of eBooks</p>
         </div>
         <div class="search-bar">
@@ -554,7 +554,7 @@
         <div class="section">
             <div class="section-header">
                 <span class="section-label">Our Story</span>
-                <h2 class="section-title">About Words and Wheels</h2>
+                <h2 class="section-title">Words and Wheels \u2014 About</h2>
                 <p class="section-subtitle">A digital bookstore dedicated to stories that matter &mdash; delivered instantly to your device.</p>
             </div>
             <div style="max-width:700px;margin:0 auto;">
@@ -584,7 +584,7 @@
     <div class="author-section">
         <div class="section-header" style="margin-bottom:40px;">
             <span class="section-label">Meet the Author</span>
-            <h2 class="section-title">Robert Suter</h2>
+            <h2 class="section-title">Words and Wheels \u2014 Robert Suter</h2>
         </div>
         <div class="author-content">
             <p>Robert Suter, born in Newark, New Jersey, now resides at Hampton Ridge Healthcare and Rehabilitation in Toms River, New Jersey. He is confined to a wheelchair. At 74, he continues to write with determination and imagination under the pen names Jack Baptiste and R. E. Suter, proving that stories don't retire.</p>
@@ -705,6 +705,14 @@ function showPage(page) {
     var navLink = document.getElementById('nav-' + page);
     if (navLink) navLink.classList.add('active');
     window.scrollTo(0, 0);
+    // Update browser tab title per page
+    var titles = {
+        'home': 'Words and Wheels \u2014 Stories Worth Reading',
+        'books': 'Words and Wheels \u2014 Books',
+        'about': 'Words and Wheels \u2014 About',
+        'author': 'Words and Wheels \u2014 The Author'
+    };
+    document.title = titles[page] || 'Words and Wheels';
 }
 
 renderBooks();
