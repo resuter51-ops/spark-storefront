@@ -457,6 +457,125 @@
             .hero h1 { font-size: 28px; }
             .hero-btn { font-size: 13px; padding: 10px 22px; }
         }
+
+        /* BOOK DETAIL MODAL */
+        .book-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15,24,37,0.8);
+            z-index: 5000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .book-modal-overlay.active { display: flex; }
+        .book-modal {
+            background: white;
+            border-radius: 16px;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            display: flex;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .book-modal-cover {
+            width: 45%;
+            max-width: 250px;
+            object-fit: cover;
+            border-radius: 16px 0 0 16px;
+            flex-shrink: 0;
+        }
+        .book-modal-body {
+            padding: 30px 28px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .book-modal-title {
+            font-size: 22px;
+            color: var(--navy);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+        .book-modal-subtitle {
+            font-size: 14px;
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+            margin-bottom: 14px;
+            font-style: italic;
+        }
+        .book-modal-genre {
+            font-size: 11px;
+            color: var(--light-text);
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+        .book-modal-desc {
+            font-size: 15px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+        .book-modal-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: auto;
+        }
+        .book-modal-price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gold);
+            font-family: Arial, sans-serif;
+        }
+        .book-modal-buy {
+            background: var(--navy);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .book-modal-buy:hover { background: var(--dark); }
+        .book-modal-close {
+            position: absolute;
+            top: 10px; right: 14px;
+            background: rgba(0,0,0,0.1);
+            border: none;
+            border-radius: 50%;
+            width: 34px; height: 34px;
+            font-size: 20px;
+            color: #666;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+        .book-modal-close:hover { background: rgba(0,0,0,0.2); color: #333; }
+        @media (max-width: 600px) {
+            .book-modal { flex-direction: column; }
+            .book-modal-cover {
+                width: 100%;
+                max-width: 100%;
+                max-height: 250px;
+                border-radius: 16px 16px 0 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -665,17 +784,40 @@ var books = [
 ];
 
 function bookCard(book) {
+    var idx = books.indexOf(book);
     var badge = book.bestseller ? '<div class="bestseller-badge">\u2605 Bestseller</div>' : '';
     return '<div class="book-card-wrap">' + badge +
-        '<div class="book-card">' +
+        '<div class="book-card" style="cursor:pointer;" onclick="openBookModal(' + idx + ')">' +
         '<img class="book-cover" src="' + book.cover + '" alt="' + book.title + '" loading="lazy" style="aspect-ratio:2/3;">' +
         '<div class="book-info" style="padding:8px;">' +
         '<h3 class="book-title" style="font-size:14px;margin-bottom:2px;">' + book.title + '</h3>' +
         '<div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">' + book.genre + '</div>' +
-        '<div class="book-footer" style="margin-top:6px;">' +
+        '<div style="font-size:11px;color:#888;margin-bottom:4px;font-family:Arial,sans-serif;font-style:italic;">Click for synopsis</div>' +
+        '<div class="book-footer" style="margin-top:4px;">' +
         '<span class="book-price" style="font-size:17px;">' + book.price + '</span>' +
-        '<a class="buy-btn" href="' + book.payhip_url + '" target="_blank" style="padding:8px 18px;font-size:12px;">Buy Now</a>' +
+        '<a class="buy-btn" href="' + book.payhip_url + '" target="_blank" style="padding:8px 18px;font-size:12px;" onclick="event.stopPropagation()">Buy Now</a>' +
         '</div></div></div></div>';
+}
+
+function openBookModal(idx) {
+    var book = books[idx];
+    document.getElementById('modal-cover').src = book.cover;
+    document.getElementById('modal-cover').alt = book.title;
+    document.getElementById('modal-title').textContent = book.title;
+    document.getElementById('modal-subtitle').textContent = book.subtitle || '';
+    document.getElementById('modal-genre').textContent = book.genre;
+    document.getElementById('modal-desc').textContent = book.description;
+    document.getElementById('modal-price').textContent = book.price;
+    var buyLink = document.getElementById('modal-buy');
+    buyLink.href = book.payhip_url;
+    document.getElementById('book-modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBookModal(event) {
+    if (event && event.target !== document.getElementById('book-modal-overlay')) return;
+    document.getElementById('book-modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 function renderBooks() {
@@ -749,5 +891,29 @@ renderBooks();
 })();
 </script>
 
+
+<!-- Book Detail Modal -->
+<div class="book-modal-overlay" id="book-modal-overlay" onclick="closeBookModal(event)">
+    <div class="book-modal" id="book-modal" onclick="event.stopPropagation()">
+        <button class="book-modal-close" onclick="closeBookModal()">&times;</button>
+        <img class="book-modal-cover" id="modal-cover" src="" alt="">
+        <div class="book-modal-body">
+            <h2 class="book-modal-title" id="modal-title"></h2>
+            <div class="book-modal-subtitle" id="modal-subtitle"></div>
+            <div class="book-modal-genre" id="modal-genre"></div>
+            <p class="book-modal-desc" id="modal-desc"></p>
+            <div class="book-modal-footer">
+                <span class="book-modal-price" id="modal-price"></span>
+                <a class="book-modal-buy" id="modal-buy" href="#" target="_blank">Buy Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeBookModal();
+});
+</script>
 </body>
 </html>
