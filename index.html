@@ -208,7 +208,7 @@
         /* BOOK GRID */
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 28px;
         }
         .book-card-wrap { position: relative; }
@@ -230,6 +230,7 @@
             aspect-ratio: 2/3;
             object-fit: cover;
             background: var(--cream);
+            max-height: 200px;
         }
         .book-info {
             padding: 14px;
@@ -435,6 +436,7 @@
         .search-bar input::placeholder { color: #999; }
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .book-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .hero h1 { font-size: 34px; }
             .hero { min-height: 420px; }
             .nav-logo { font-size: 15px; letter-spacing: 0.5px; }
@@ -539,7 +541,7 @@
             <h2 style="font-size:22px;color:var(--navy);font-weight:normal;">All Books</h2>
             <input type="text" id="search-input" placeholder="Search..." oninput="filterBooks(this.value)" style="background:white;border:2px solid rgba(26,42,74,0.12);border-radius:50px;padding:8px 18px;font-size:13px;width:200px;font-family:Arial,sans-serif;outline:none;">
         </div>
-        <div class="book-grid" id="all-books-grid" style="gap:20px;"></div>
+        <div class="book-grid" id="all-books-grid" style="gap:12px;"></div>
     </div>
 </div>
 
@@ -667,7 +669,7 @@ function bookCard(book) {
     return '<div class="book-card-wrap">' + badge +
         '<div class="book-card">' +
         '<img class="book-cover" src="' + book.cover + '" alt="' + book.title + '" loading="lazy" style="aspect-ratio:2/3;">' +
-        '<div class="book-info" style="padding:10px;">' +
+        '<div class="book-info" style="padding:8px;">' +
         '<h3 class="book-title" style="font-size:14px;margin-bottom:2px;">' + book.title + '</h3>' +
         '<div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">' + book.genre + '</div>' +
         '<div class="book-footer" style="margin-top:6px;">' +
