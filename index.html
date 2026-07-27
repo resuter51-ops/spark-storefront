@@ -456,6 +456,42 @@
     </style>
 </head>
 <body>
+<script>
+// Fix Payhip's built-in nav: rename PLAY GAMES to Arcade, remove PHRASEBOOKS, hide stray HOME text
+(function() {
+  function fixPayhipNav() {
+    // Find all links in the Payhip header
+    var links = document.querySelectorAll('header a, header nav a, [class*="nav"] a');
+    links.forEach(function(a) {
+      var text = a.textContent.trim().toUpperCase();
+      if (text === 'PLAY GAMES') {
+        a.textContent = 'Arcade';
+      }
+      if (text === 'PHRASEBOOKS') {
+        a.style.display = 'none';
+      }
+    });
+    // Hide stray "HOME" text that appears between headers
+    var allElements = document.querySelectorAll('body > *:not(nav):not(script):not(style)');
+    allElements.forEach(function(el) {
+      if (el.children.length === 0 && el.textContent.trim() === 'HOME') {
+        el.style.display = 'none';
+      }
+    });
+  }
+  // Run immediately
+  fixPayhipNav();
+  // Run again after a delay (Payhip header may load late)
+  setTimeout(fixPayhipNav, 500);
+  setTimeout(fixPayhipNav, 1500);
+  setTimeout(fixPayhipNav, 3000);
+  // Also observe DOM changes to catch late-loading elements
+  var observer = new MutationObserver(function() { fixPayhipNav(); });
+  observer.observe(document.body, { childList: true, subtree: true });
+  // Stop observing after 10 seconds to avoid infinite loop
+  setTimeout(function() { observer.disconnect(); }, 10000);
+})();
+</script>
 
 <!-- NAVBAR -->
 <nav>
