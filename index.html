@@ -795,7 +795,7 @@ function bookCard(book) {
         '<div style="font-size:11px;color:#888;margin-bottom:4px;font-family:Arial,sans-serif;font-style:italic;">Click for synopsis</div>' +
         '<div class="book-footer" style="margin-top:4px;">' +
         '<span class="book-price" style="font-size:17px;">' + book.price + '</span>' +
-        '<a class="buy-btn" href="' + book.payhip_url + '" target="_blank" style="padding:8px 18px;font-size:12px;" onclick="event.stopPropagation()">Buy Now</a>' +
+        '<a class="buy-btn" href="javascript:void(0)" style="padding:8px 18px;font-size:12px;" onclick="event.stopPropagation();openBookModal(' + idx + ')">Details</a>' +
         '</div></div></div></div>';
 }
 
