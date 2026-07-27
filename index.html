@@ -77,7 +77,7 @@
         /* HERO WITH BOOK SCENE */
         .hero {
             position: relative;
-            min-height: 260px;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -99,10 +99,10 @@
             z-index: 2;
             max-width: 600px;
             margin: 0 auto;
-            padding: 30px 24px 20px;
+            padding: 50px 24px 40px;
         }
         .hero h1 {
-            font-size: 36px;
+            font-size: 44px;
             font-weight: normal;
             letter-spacing: 0.5px;
             line-height: 1.15;
@@ -208,7 +208,7 @@
         /* BOOK GRID */
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 28px;
         }
         .book-card-wrap { position: relative; }
@@ -411,7 +411,7 @@
             font-family: Arial, sans-serif;
         }
         /* PAGE SECTIONS */
-        .page { display: block; }
+        .page { display: none; }
         .page.active { display: block; }
         .page { scroll-margin-top: 80px; }
         /* SEARCH */
@@ -534,16 +534,12 @@
 
 <!-- BOOKS PAGE -->
 <div class="page" id="page-books">
-    <div class="section">
-        <div class="section-header">
-            <span class="section-label">All Books</span>
-            <h2 class="section-title">Words and Wheels \u2014 The Collection</h2>
-            <p class="section-subtitle">Explore the full collection of eBooks</p>
+    <div class="section" style="padding-top:20px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
+            <h2 style="font-size:22px;color:var(--navy);font-weight:normal;">All Books</h2>
+            <input type="text" id="search-input" placeholder="Search..." oninput="filterBooks(this.value)" style="background:white;border:2px solid rgba(26,42,74,0.12);border-radius:50px;padding:8px 18px;font-size:13px;width:200px;font-family:Arial,sans-serif;outline:none;">
         </div>
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search by title or genre..." oninput="filterBooks(this.value)">
-        </div>
-        <div class="book-grid" id="all-books-grid"></div>
+        <div class="book-grid" id="all-books-grid" style="gap:20px;"></div>
     </div>
 </div>
 
@@ -670,15 +666,13 @@ function bookCard(book) {
     var badge = book.bestseller ? '<div class="bestseller-badge">\u2605 Bestseller</div>' : '';
     return '<div class="book-card-wrap">' + badge +
         '<div class="book-card">' +
-        '<img class="book-cover" src="' + book.cover + '" alt="' + book.title + '" loading="lazy">' +
-        '<div class="book-info">' +
-        '<h3 class="book-title">' + book.title + '</h3>' +
-        '<div class="book-subtitle">' + book.subtitle + '</div>' +
-        '<div class="book-genre">' + book.genre + '</div>' +
-        '<p class="book-desc">' + book.description + '</p>' +
-        '<div class="book-footer">' +
-        '<span class="book-price">' + book.price + '</span>' +
-        '<a class="buy-btn" href="' + book.payhip_url + '" target="_blank">Buy Now</a>' +
+        '<img class="book-cover" src="' + book.cover + '" alt="' + book.title + '" loading="lazy" style="aspect-ratio:2/3;">' +
+        '<div class="book-info" style="padding:10px;">' +
+        '<h3 class="book-title" style="font-size:14px;margin-bottom:2px;">' + book.title + '</h3>' +
+        '<div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">' + book.genre + '</div>' +
+        '<div class="book-footer" style="margin-top:6px;">' +
+        '<span class="book-price" style="font-size:17px;">' + book.price + '</span>' +
+        '<a class="buy-btn" href="' + book.payhip_url + '" target="_blank" style="padding:8px 18px;font-size:12px;">Buy Now</a>' +
         '</div></div></div></div>';
 }
 
@@ -698,15 +692,12 @@ function filterBooks(query) {
 }
 
 function showPage(page) {
-    // Single-page mode: scroll to the section instead of switching pages
-    var el = document.getElementById('page-' + page);
-    if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    // Update nav active state
+    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+    document.getElementById('page-' + page).classList.add('active');
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     var navLink = document.getElementById('nav-' + page);
     if (navLink) navLink.classList.add('active');
+    window.scrollTo(0, 0);
 }
 
 renderBooks();
