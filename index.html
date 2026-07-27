@@ -22,7 +22,7 @@
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
-            min-height: 2400px;
+            
         }
         /* NAVBAR */
         nav {
@@ -411,8 +411,9 @@
             font-family: Arial, sans-serif;
         }
         /* PAGE SECTIONS */
-        .page { display: none; }
+        .page { display: block; }
         .page.active { display: block; }
+        .page { scroll-margin-top: 80px; }
         /* SEARCH */
         .search-bar {
             max-width: 450px;
@@ -739,20 +740,15 @@ function filterBooks(query) {
 }
 
 function showPage(page) {
-    document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
-    document.getElementById('page-' + page).classList.add('active');
+    // Single-page mode: scroll to the section instead of switching pages
+    var el = document.getElementById('page-' + page);
+    if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Update nav active state
     document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     var navLink = document.getElementById('nav-' + page);
     if (navLink) navLink.classList.add('active');
-    window.scrollTo(0, 0);
-    // Update browser tab title per page
-    var titles = {
-        'home': 'Words and Wheels \u2014 Stories Worth Reading',
-        'books': 'Words and Wheels \u2014 Books',
-        'about': 'Words and Wheels \u2014 About',
-        'author': 'Words and Wheels \u2014 The Author'
-    };
-    document.title = titles[page] || 'Words and Wheels';
 }
 
 renderBooks();
