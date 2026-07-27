@@ -77,7 +77,7 @@
         /* HERO WITH BOOK SCENE */
         .hero {
             position: relative;
-            min-height: 520px;
+            min-height: 260px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -99,10 +99,10 @@
             z-index: 2;
             max-width: 600px;
             margin: 0 auto;
-            padding: 80px 24px 60px;
+            padding: 30px 24px 20px;
         }
         .hero h1 {
-            font-size: 52px;
+            font-size: 36px;
             font-weight: normal;
             letter-spacing: 0.5px;
             line-height: 1.15;
@@ -113,7 +113,7 @@
         .hero p {
             font-size: 18px;
             color: rgba(255,255,255,0.85);
-            margin-bottom: 32px;
+            margin-bottom: 16px;
             font-family: Arial, sans-serif;
             font-weight: 300;
         }
@@ -121,7 +121,7 @@
             display: inline-block;
             background: var(--gold);
             color: var(--dark);
-            padding: 16px 48px;
+            padding: 12px 36px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
@@ -175,11 +175,11 @@
         .section {
             max-width: 1100px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 30px 24px;
         }
         .section-header {
             text-align: center;
-            margin-bottom: 48px;
+            margin-bottom: 24px;
         }
         .section-label {
             font-size: 12px;
@@ -192,10 +192,10 @@
             font-weight: bold;
         }
         .section-title {
-            font-size: 36px;
+            font-size: 28px;
             font-weight: normal;
             color: var(--navy);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .section-subtitle {
             font-size: 15px;
@@ -232,13 +232,13 @@
             background: var(--cream);
         }
         .book-info {
-            padding: 22px;
+            padding: 14px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
         .book-title {
-            font-size: 18px;
+            font-size: 15px;
             font-weight: normal;
             color: var(--navy);
             margin-bottom: 4px;
@@ -258,9 +258,9 @@
             letter-spacing: 1px;
         }
         .book-desc {
-            font-size: 13px;
+            font-size: 12px;
             color: #555;
-            margin-bottom: 18px;
+            margin-bottom: 12px;
             flex: 1;
             line-height: 1.6;
         }
@@ -364,7 +364,7 @@
             z-index: 1;
             max-width: 700px;
             margin: 0 auto;
-            padding: 60px 24px;
+            padding: 30px 24px;
         }
         .author-content .section-label { color: var(--gold); }
         .author-content .section-title { color: white; }
@@ -529,48 +529,7 @@
         </div>
     </div>
 
-    <!-- BOOK SCENE STRIP -->
-    <div class="book-scene-strip">
-        <div class="strip-text">"Great stories should be accessible to everyone, anywhere, at any moment."</div>
-    </div>
-
-    <!-- FEATURED BOOKS -->
-    <div class="section">
-        <div class="section-header">
-            <span class="section-label">Featured Books</span>
-            <h2 class="section-title">Words and Wheels \u2014 The Collection</h2>
-            <p class="section-subtitle">Explore the full collection of eBooks &mdash; fiction, thriller, memoir, and creative nonfiction.</p>
-        </div>
-        <div class="book-grid" id="featured-grid"></div>
-    </div>
-
-    <!-- ABOUT TEASER -->
-    <div class="about-section">
-        <div class="section">
-            <div class="about-grid">
-                <div class="about-text">
-                    <span class="section-label">Our Story</span>
-                    <h2 style="font-size:30px;color:var(--navy);margin-bottom:16px;font-weight:normal;">Words and Wheels \u2014 About</h2>
-                    <p>Words and Wheels was born from a simple belief: great stories should be accessible to everyone, anywhere, at any moment. We publish and sell digital books that you can start reading within seconds of purchase.</p>
-                    <p>Our catalog spans fiction, thriller, memoir, and creative nonfiction. Whether it's the gripping Salvager series by Jack Baptiste, the warm heart of Happiness Finds Big Man, or the nostalgic world of Valley Fair, every book we carry is chosen because it earns its place on your reading list.</p>
-                    <p>All books are published by R. E. Suter and available exclusively as instant digital downloads. No shipping. No waiting. Just great reading.</p>
-                    <button class="hero-btn" style="margin-top:8px;" onclick="showPage('about')">Learn More</button>
-                </div>
-                <div>
-                    <div class="about-cards">
-                        <div class="about-card">
-                            <h3>Instant Downloads</h3>
-                            <p>Every book is delivered instantly as an ebook. Buy once, read forever on any device.</p>
-                        </div>
-                        <div class="about-card">
-                            <h3>Get in Touch</h3>
-                            <p>Questions about an order or a book? We're here to help. Reach out any time.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </div>
 
 <!-- BOOKS PAGE -->
@@ -725,7 +684,6 @@ function bookCard(book) {
 
 function renderBooks() {
     var sorted = books.slice().sort(function(a,b) { return (b.bestseller?1:0) - (a.bestseller?1:0); });
-    document.getElementById('featured-grid').innerHTML = sorted.slice(0,4).map(bookCard).join('');
     document.getElementById('all-books-grid').innerHTML = books.map(bookCard).join('');
 }
 
