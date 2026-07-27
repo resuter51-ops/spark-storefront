@@ -22,6 +22,7 @@
             color: var(--text);
             line-height: 1.7;
             overflow-x: hidden;
+            min-height: 2400px;
         }
         /* NAVBAR */
         nav {
@@ -756,5 +757,50 @@ function showPage(page) {
 
 renderBooks();
 </script>
+
+<script>
+// Auto-resize iframe to fit content so books page isn't clipped
+(function() {
+  function resizeFrame() {
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, 2400);
+    // Try direct resize (works if same-origin)
+    try {
+      if (window.frameElement) {
+        window.frameElement.style.height = h + 'px';
+        window.frameElement.height = h;
+        window.frameElement.setAttribute('height', h);
+      }
+    } catch(e) {}
+    // Try postMessage (works if parent listens)
+    try {
+      window.parent.postMessage({ type: 'resize', height: h, source: 'words-and-wheels' }, '*');
+    } catch(e) {}
+  }
+  // Run on load, on page changes, and on resize
+  window.addEventListener('load', resizeFrame);
+  window.addEventListener('resize', resizeFrame);
+  // Also run whenever showPage is called
+  var origShowPage = window.showPage;
+  if (origShowPage) {
+    window.showPage = function(page) {
+      origShowPage(page);
+      setTimeout(resizeFrame, 50);
+      setTimeout(resizeFrame, 300);
+    };
+  }
+  // Run periodically for the first few seconds
+  setTimeout(resizeFrame, 100);
+  setTimeout(resizeFrame, 500);
+  setTimeout(resizeFrame, 1500);
+  setTimeout(resizeFrame, 3000);
+  // Observe DOM changes
+  if (typeof MutationObserver !== 'undefined') {
+    var obs = new MutationObserver(function() { resizeFrame(); });
+    obs.observe(document.body, { childList: true, subtree: true, attributes: true });
+    setTimeout(function() { obs.disconnect(); }, 10000);
+  }
+})();
+</script>
+
 </body>
 </html>
