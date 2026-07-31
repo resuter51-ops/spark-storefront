@@ -623,6 +623,7 @@
         <ul class="nav-links">
             <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
             <li><a onclick="showPage('books')" id="nav-books">Books</a></li>
+            <li><a onclick="showPage('comics')" id="nav-comics">Salvager Comics</a></li>
             <li><a onclick="showPage('about')" id="nav-about">About</a></li>
             <li><a onclick="showPage('author')" id="nav-author">Author</a></li>
             <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a></li>
@@ -645,6 +646,7 @@
             <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;">
                 <button class="hero-btn" onclick="showPage('books')">Browse Books</button>
                 <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+                <a class="hero-btn secondary" onclick="showPage('comics')">Salvager Comics</a>
                 <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Play Arcade</a>
                 <a class="hero-btn secondary" href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a>
             </div>
@@ -662,6 +664,57 @@
             <input type="text" id="search-input" placeholder="Search..." oninput="filterBooks(this.value)" style="background:white;border:2px solid rgba(26,42,74,0.12);border-radius:50px;padding:8px 18px;font-size:13px;width:200px;font-family:Arial,sans-serif;outline:none;">
         </div>
         <div class="book-grid" id="all-books-grid" style="gap:12px;"></div>
+    </div>
+</div>
+
+
+<!-- SALVAGER COMICS PAGE -->
+<div class="page" id="page-comics">
+    <div class="comics-page">
+        <div class="comics-header">
+            <h2>The Salvager Comics</h2>
+            <p>New adventures of Zeke Carter &mdash; ex-cop, reluctant savior, and the man who stands next to doors. Original comic strips set in the world of The Salvager series.</p>
+        </div>
+
+        <div class="comics-intro">
+            <h3>Strip 1: "The Diner"</h3>
+            <p>Zeke stops for coffee on a rainy night. Sometimes the people who need saving find you first.</p>
+        </div>
+
+        <div class="comics-strip">
+            <div class="comics-strip-title">
+                <span>THE SALVAGER &mdash; "The Diner"</span>
+                <span>Strip 1 of 1</span>
+            </div>
+            <div class="comics-grid">
+                <!-- Panel 1: Wide establishing shot -->
+                <div class="comics-panel comics-panel-wide">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/2becc4a77_generated_image.png" alt="Panel 1">
+                    <div class="comic-bubble tail-bottom" style="top: 15px; left: 20px;">Rain never bothered me. Just meant fewer people out.</div>
+                </div>
+                <!-- Panel 2: Kid sits down -->
+                <div class="comics-panel">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/cf882c486_generated_image.png" alt="Panel 2">
+                    <div class="comic-bubble tail-bottom" style="top: 10px; left: 10px; max-width: 70%;">He sat down three stools away. Trying to look like he belonged there.</div>
+                </div>
+                <!-- Panel 3: Hand pushing plate -->
+                <div class="comics-panel">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/ab350034e_generated_image.png" alt="Panel 3">
+                </div>
+                <!-- Panel 4: Two-shot -->
+                <div class="comics-panel comics-panel-wide">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/a5f808669_generated_image.png" alt="Panel 4">
+                    <div class="comic-bubble tail-left" style="bottom: 30px; left: 55%;">How'd you know?</div>
+                    <div class="comic-bubble tail-right" style="bottom: 60px; right: 50%;">Same way you will. Someday.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comics-nav">
+            <button onclick="showPage('books')">Back to Books</button>
+            <span class="strip-counter">Strip 1 of 1</span>
+            <button onclick="showPage('home')">Home</button>
+        </div>
     </div>
 </div>
 
@@ -721,6 +774,7 @@
         <a onclick="showPage('home')">Home</a>
         <a onclick="showPage('books')">Books</a>
         <a onclick="showPage('about')">About</a>
+        <a onclick="showPage('comics')">Salvager Comics</a>
         <a onclick="showPage('author')">Author</a>
         <a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
         <a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
@@ -1162,6 +1216,223 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeBookModal();
 });
 </script>
+
+
+/* SALVAGER COMICS PAGE */
+.comics-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+}
+.comics-header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+.comics-header h2 {
+    font-size: 28px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 8px;
+    font-family: Georgia, serif;
+}
+.comics-header p {
+    color: var(--light-text);
+    font-size: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+.comics-strip {
+    background: #fffef8;
+    border: 2px solid var(--navy);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+.comics-strip-title {
+    background: var(--navy);
+    color: var(--gold);
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.comics-strip-title span:last-child {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.7;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.comics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 4px;
+    padding: 12px;
+    background: #1a1a1a;
+}
+.comics-panel {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #000;
+    background: #2a2a2a;
+}
+.comics-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.comics-panel-wide {
+    grid-column: 1 / -1;
+}
+.comics-panel-tall {
+    grid-row: span 2;
+}
+/* Speech bubbles */
+.comic-bubble {
+    position: absolute;
+    background: #fff;
+    border: 2px solid #000;
+    border-radius: 12px;
+    padding: 8px 14px;
+    font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #111;
+    max-width: 60%;
+    z-index: 10;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+.comic-bubble.tail-bottom::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 20px;
+    width: 0; height: 0;
+    border: 6px solid transparent;
+    border-top-color: #000;
+    border-bottom: 0;
+}
+.comic-bubble.tail-bottom::before {
+    content: '';
+    position: absolute;
+    bottom: -9px;
+    left: 22px;
+    width: 0; height: 0;
+    border: 5px solid transparent;
+    border-top-color: #fff;
+    border-bottom: 0;
+    z-index: 1;
+}
+.comic-bubble.tail-left::after {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 15px;
+    width: 0; height: 0;
+    border: 6px solid transparent;
+    border-right-color: #000;
+    border-left: 0;
+}
+.comic-bubble.tail-left::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 17px;
+    width: 0; height: 0;
+    border: 5px solid transparent;
+    border-right-color: #fff;
+    border-left: 0;
+    z-index: 1;
+}
+.comic-bubble.tail-right::after {
+    content: '';
+    position: absolute;
+    right: -12px;
+    top: 15px;
+    width: 0; height: 0;
+    border: 6px solid transparent;
+    border-left-color: #000;
+    border-right: 0;
+}
+.comic-bubble.tail-right::before {
+    content: '';
+    position: absolute;
+    right: -9px;
+    top: 17px;
+    width: 0; height: 0;
+    border: 5px solid transparent;
+    border-left-color: #fff;
+    border-right: 0;
+    z-index: 1;
+}
+.comic-caption {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    padding: 6px 10px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    border-radius: 4px;
+    text-align: center;
+}
+.comics-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 0 10px;
+}
+.comics-nav button {
+    background: var(--navy);
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 13px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background 0.2s;
+}
+.comics-nav button:hover { background: var(--gold); color: var(--navy); }
+.comics-nav .strip-counter {
+    color: var(--light-text);
+    font-size: 13px;
+}
+.comics-intro {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--dark) 100%);
+    color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+.comics-intro h3 {
+    color: var(--gold);
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.comics-intro p {
+    font-size: 14px;
+    line-height: 1.6;
+    opacity: 0.85;
+    max-width: 500px;
+    margin: 0 auto;
+}
+@media (max-width: 600px) {
+    .comics-grid { grid-template-columns: 1fr; }
+    .comics-panel-wide { grid-column: 1; }
+    .comic-bubble { font-size: 11px; padding: 6px 10px; max-width: 75%; }
+}
 
 <style>
 .sample-overlay {
