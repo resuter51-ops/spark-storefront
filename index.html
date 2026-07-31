@@ -780,7 +780,8 @@ var books = [
         cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/25e7a2f41_Just-Another-Typical-Day-in-Valley-Fair-original.jpg",
         description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center \u2014 a love letter to a vanished era of American life.",
         bestseller: false,
-        payhip_url: "https://wordsandwheels.net/b/JQZ8A"
+        payhip_url: "https://wordsandwheels.net/b/JQZ8A",
+        sample: "It was the summer of 1968 when I first walked into Valley Fair to apply for a job. I had my eye on the grocery department, but I wasn't picky—just needed work. Jimmy Barlow, the man doing the hiring, gave me a quick once-over and said they had an opening in produce. I told him I'd be happy to take it.\n\nThat very night, I started. My first introduction was to the produce manager, Elmo. He was a wiry guy with a gaunt face, always smelling faintly of cigarettes and cheap whiskey. Elmo had a reputation—drinking on the job, gambling on Fridays. Every week, there was a card game going on in the back office of the deli department, and it wasn't after hours either. It happened right in the middle of store time, while customers pushed carts down the aisles and kids begged for candy near the registers. It was just one of those things—unspoken, but well-known.\n\nNext up was Den-Den, the other part-time worker. He was the one breaking me in. Den-Den wasn't the hardest worker—he liked to take it easy—but he treated me fairly and showed me the ropes.\n\nThe very first thing Den-Den showed me was how to use the scale. It was a big piece of equipment, maybe two and a half feet long, with a flat metal plate to match—perfect for weighing bags of produce or loose vegetables. Above that was a long, lit display window with a red line running through the middle. Across the top were all the different price points, and to the left were the weight markings in pounds and ounces.\n\nIt wasn't rocket science, but for a kid just starting out, it was a little intimidating—especially when you had to price something that cost more than the scale would calculate.\n\nThe trick was to weigh it, find the price for half, and then double it in your head.\n\nYou also had to learn to tell the difference between the fruits and vegetables, and more importantly, memorize the price per pound for each one.\n\nDen-Den drilled me hard on that scale. At first, I thought he was being generous—making sure I got the hang of things. Later I realized he just wanted to make sure I could handle the scale so he could disappear for most of the night. Like I said, Den-Den wasn't exactly management material."
     }
 ];
 
@@ -800,6 +801,7 @@ function bookCard(book) {
         '</div></div></div></div>';
 }
 
+var currentSample = null;
 function openBookModal(idx) {
     var book = books[idx];
     document.getElementById('modal-cover').src = book.cover;
@@ -811,8 +813,30 @@ function openBookModal(idx) {
     document.getElementById('modal-price').textContent = book.price;
     var buyLink = document.getElementById('modal-buy');
     buyLink.href = book.payhip_url;
+    var sampleBtn = document.getElementById('modal-sample-btn');
+    if (book.sample) {
+        currentSample = { title: book.title, text: book.sample, url: book.payhip_url };
+        sampleBtn.style.display = 'inline-block';
+    } else {
+        currentSample = null;
+        sampleBtn.style.display = 'none';
+    }
     document.getElementById('book-modal-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
+}
+function openSampleReader() {
+    if (!currentSample) return;
+    document.getElementById('book-modal-overlay').classList.remove('active');
+    var overlay = document.getElementById('sample-overlay');
+    document.getElementById('sample-title').textContent = currentSample.title + ' — Free Sample';
+    document.getElementById('sample-text').innerHTML = currentSample.text.split('\n\n').map(function(p) { return '<p>' + p + '</p>'; }).join('');
+    document.getElementById('sample-buy-btn').href = currentSample.url;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeSampleReader() {
+    document.getElementById('sample-overlay').classList.remove('active');
+    document.body.style.overflow = '';
 }
 
 function closeBookModal(event) {
@@ -905,6 +929,7 @@ renderBooks();
             <p class="book-modal-desc" id="modal-desc"></p>
             <div class="book-modal-footer">
                 <span class="book-modal-price" id="modal-price"></span>
+                <button class="book-modal-buy" id="modal-sample-btn" onclick="openSampleReader()" style="background:#1a2a4a;display:none;">Read a Sample</button>
                 <a class="book-modal-buy" id="modal-buy" href="#" target="_blank">Buy Now</a>
             </div>
         </div>
@@ -916,5 +941,104 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeBookModal();
 });
 </script>
+
+<style>
+.sample-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 2000;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 20px;
+}
+.sample-overlay.active { display: flex; }
+.sample-reader {
+    background: #fffef8;
+    max-width: 680px;
+    width: 100%;
+    margin: 40px auto;
+    border-radius: 12px;
+    padding: 40px 48px;
+    position: relative;
+    font-family: Georgia, serif;
+    color: #222;
+    line-height: 1.85;
+}
+.sample-reader h2 {
+    font-size: 20px;
+    color: #1a2a4a;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #c9a84c;
+    padding-bottom: 12px;
+}
+.sample-reader p {
+    margin-bottom: 18px;
+    font-size: 16px;
+    text-indent: 2em;
+}
+.sample-close {
+    position: absolute;
+    top: 16px; right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #888;
+}
+.sample-close:hover { color: #333; }
+.sample-fade {
+    position: relative;
+    margin-top: 10px;
+}
+.sample-fade::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 120px;
+    background: linear-gradient(transparent, #fffef8);
+    pointer-events: none;
+}
+.sample-cta {
+    text-align: center;
+    padding: 32px 0 8px;
+}
+.sample-cta p {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 16px;
+    text-indent: 0;
+    font-style: italic;
+}
+.sample-buy-btn {
+    display: inline-block;
+    background: #c9a84c;
+    color: #1a1a1a;
+    padding: 14px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.5px;
+}
+.sample-buy-btn:hover { background: #b8963e; }
+</style>
+
+<div class="sample-overlay" id="sample-overlay">
+    <div class="sample-reader">
+        <button class="sample-close" onclick="closeSampleReader()">&times;</button>
+        <h2 id="sample-title"></h2>
+        <div class="sample-fade">
+            <div id="sample-text"></div>
+        </div>
+        <div class="sample-cta">
+            <p>Want to keep reading? Get the full book!</p>
+            <a class="sample-buy-btn" id="sample-buy-btn" href="#" target="_blank">Get the Full Book — Buy Now</a>
+        </div>
+    </div>
+</div>
 </body>
 </html>
