@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Words and Wheels — Stories Worth Reading</title>
-    <meta name="description" content="A digital bookstore dedicated to stories that matter. Instant digital downloads. Read on any device, anytime.">
+    <title>Words & Wheels — The Creative World of Bob Suter</title>
+    <meta name="description" content="The creative world of Bob Suter — books, games, music, comics, thoughts, faith, and life from a different point of view.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -620,16 +620,21 @@
 <nav>
     <div class="nav-inner">
         <a class="nav-logo" onclick="showPage('home')">WORDS &amp; WHEELS</a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="main-nav">
             <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
             <li><a onclick="showPage('books')" id="nav-books">Books</a></li>
-            <li><a onclick="showPage('comics')" id="nav-comics">Salvager Comics</a></li>
+            <li><a onclick="showPage('comics')" id="nav-comics">Comics</a></li>
             <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-            <li><a onclick="showPage('author')" id="nav-author">Author</a></li>
-            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a></li>
-            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a></li>
-            <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a></li>
-            <li><a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a></li>
+            <li style="position:relative;" id="more-dropdown">
+                <a onclick="toggleMoreMenu()" id="nav-more" style="cursor:pointer;">More &nbsp;&#9662;</a>
+                <div id="more-menu" style="display:none;position:absolute;top:100%;right:0;background:rgba(26,42,74,0.98);min-width:160px;border-radius:0 0 10px 10px;padding:8px 0;box-shadow:0 8px 20px rgba(0,0,0,0.3);z-index:1001;">
+                    <a onclick="showPage('author')" id="nav-author" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);cursor:pointer;">Author</a>
+                    <a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Arcade</a>
+                    <a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Jukebox</a>
+                    <a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Phrasebooks</a>
+                    <a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Bob's Thoughts</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
@@ -641,14 +646,15 @@
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Stories Worth<br><span class="accent">Reading.</span></h1>
-            <p>Instant digital downloads. Read on any device, anytime.</p>
+            <h1>The Creative World of<br><span class="accent">Bob Suter</span></h1>
+            <p>Books, games, music, comics, thoughts, faith, and life from a different point of view.</p>
             <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;">
-                <button class="hero-btn" onclick="showPage('books')">Browse Books</button>
-                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+                <button class="hero-btn" onclick="showPage('books')">Bob's Books</button>
                 <a class="hero-btn secondary" onclick="showPage('comics')">Salvager Comics</a>
-                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Play Arcade</a>
+                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Bob's Arcade</a>
+                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Bob's Jukebox</a>
                 <a class="hero-btn secondary" href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a>
+                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
             </div>
         </div>
     </div>
@@ -725,12 +731,12 @@
             <div class="section-header">
                 <span class="section-label">Our Story</span>
                 <h2 class="section-title">Words and Wheels \u2014 About</h2>
-                <p class="section-subtitle">A digital bookstore dedicated to stories that matter &mdash; delivered instantly to your device.</p>
+                <p class="section-subtitle">A creative publishing and entertainment hub &mdash; books, games, music, comics, and more.</p>
             </div>
             <div style="max-width:700px;margin:0 auto;">
-                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Words and Wheels was born from a simple belief: great stories should be accessible to everyone, anywhere, at any moment. We publish and sell digital books that you can start reading within seconds of purchase.</p>
-                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Our catalog spans fiction, thriller, memoir, and creative nonfiction. Whether it's the gripping Salvager series by Jack Baptiste, the warm heart of Happiness Finds Big Man, or the nostalgic world of Valley Fair, every book we carry is chosen because it earns its place on your reading list.</p>
-                <p style="color:var(--light-text);font-size:17px;margin-bottom:32px;">All books are published by R. E. Suter and available exclusively as instant digital downloads. No shipping. No waiting. Just great reading.</p>
+                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Words and Wheels was born from a simple belief: great stories should be accessible to everyone, anywhere, at any moment. What started as a digital bookstore has grown into a creative publishing and entertainment hub &mdash; books, arcade games, original music, comic strips, phrasebooks, and a blog, all created by Bob Suter.</p>
+                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Our catalog spans fiction, thriller, memoir, and creative nonfiction. Whether it's the gripping Salvager series by Jack Baptiste, the warm heart of Happiness Finds Big Man, or the nostalgic world of Valley Fair, every book we carry is chosen because it earns its place on your reading list. Beyond the books, Bob's Arcade offers free games inspired by the characters, Bob's Jukebox features 23 original songs, and the Salvager Comics section expands Zeke Carter's world panel by panel.</p>
+                <p style="color:var(--light-text);font-size:17px;margin-bottom:32px;">All books are published by R. E. Suter and available exclusively as instant digital downloads. No shipping. No waiting. Just great reading &mdash; plus free games, music, and comics to explore.</p>
             </div>
             <div class="about-cards" style="max-width:600px;margin:0 auto;">
                 <div class="about-card">
@@ -738,8 +744,8 @@
                     <p>Every book is delivered instantly as an ebook. Buy once, read forever on any device.</p>
                 </div>
                 <div class="about-card">
-                    <h3>Get in Touch</h3>
-                    <p>Questions about an order or a book? We're here to help. Reach out any time and we'll get back to you promptly.</p>
+                    <h3>More Than Books</h3>
+                    <p>Free arcade games, a jukebox with 23 original tracks, comic strips, and Bob's Thoughts blog &mdash; all in one place.</p>
                 </div>
             </div>
             <div class="cta-section">
@@ -757,8 +763,8 @@
             <h2 class="section-title">Words and Wheels \u2014 Robert Suter</h2>
         </div>
         <div class="author-content">
-            <p>Robert Suter, born in Newark, New Jersey, now resides at Hampton Ridge Healthcare and Rehabilitation in Toms River, New Jersey. He is confined to a wheelchair. At 74, he continues to write with determination and imagination under the pen names Jack Baptiste and R. E. Suter, proving that stories don't retire.</p>
-            <p>R. E. Suter is the publisher and creative force behind Words and Wheels &mdash; a digital bookstore built on the belief that great stories should reach anyone, anywhere, instantly.</p>
+            <p>Robert Suter is a wheelchair user, author, publisher, songwriter, and creator living in Toms River, New Jersey. He writes with determination and imagination under the pen names Jack Baptiste and R. E. Suter, proving that stories don't retire.</p>
+            <p>R. E. Suter is the publisher and creative force behind Words and Wheels &mdash; a creative publishing and entertainment hub built on the belief that great stories should reach anyone, anywhere, instantly.</p>
             <p>From the gripping thriller world of The Salvager series to the warmth of Happiness Finds Big Man and the nostalgic charm of Just Another Typical Day in Valley Fair, every book in the catalog reflects a commitment to storytelling that earns its place in your hands.</p>
             <p>All books are available as instant digital downloads &mdash; no shipping, no waiting. Just great reading, delivered to your device the moment you're ready.</p>
         </div>
@@ -781,10 +787,24 @@
         <a href="https://wordsandwheels.net" target="_blank">Store</a>
         <a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a>
     </div>
-    <p class="footer-credit">Words and Wheels &bull; Stories Worth Reading &bull; &copy; 2026</p>
+    <p class="footer-credit">Words and Wheels &bull; The Creative World of Bob Suter &bull; &copy; 2026</p>
 </footer>
 
 <script>
+
+function toggleMoreMenu() {
+    var menu = document.getElementById('more-menu');
+    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+}
+// Close menu when clicking outside
+document.addEventListener('click', function(e) {
+    var dropdown = document.getElementById('more-dropdown');
+    var menu = document.getElementById('more-menu');
+    if (dropdown && menu && !dropdown.contains(e.target)) {
+        menu.style.display = 'none';
+    }
+});
+
 var books = [
     {
         title: "The Salvager: The Sister's Plea",
@@ -1122,7 +1142,12 @@ function closeBookModal(event) {
 
 function renderBooks() {
     var sorted = books.slice().sort(function(a,b) { return (b.bestseller?1:0) - (a.bestseller?1:0); });
-    document.getElementById('all-books-grid').innerHTML = books.map(bookCard).join('');
+    var sortedBooks = books.slice().sort(function(a, b) {
+        if (a.bestseller && !b.bestseller) return -1;
+        if (!a.bestseller && b.bestseller) return 1;
+        return 0;
+    });
+    document.getElementById('all-books-grid').innerHTML = sortedBooks.map(bookCard).join('');
 }
 
 function filterBooks(query) {
