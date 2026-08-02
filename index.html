@@ -16,7 +16,7 @@
             --light-text: #666;
             --white: #ffffff;
         }
-        body {
+        body { position: relative;
             font-family: Georgia, 'Times New Roman', serif;
             background: var(--cream);
             color: var(--text);
@@ -460,7 +460,7 @@
 
         /* BOOK DETAIL MODAL */
         .book-modal-overlay {
-            position: fixed;
+            position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(15,24,37,0.8);
             z-index: 5000;
@@ -475,7 +475,7 @@
             border-radius: 16px;
             max-width: 700px;
             width: 100%;
-            max-height: 85vh;
+            max-height: 600px;
             overflow-y: auto;
             display: flex;
             position: relative;
@@ -488,7 +488,7 @@
             border-radius: 16px 0 0 16px;
             flex-shrink: 0;
         }
-        .book-modal-body {
+        .book-modal-body { position: relative;
             padding: 30px 28px;
             flex: 1;
             display: flex;
@@ -1085,7 +1085,7 @@ function bookCard(book) {
     var badge = book.bestseller ? '<div class="bestseller-badge">\u2605 Bestseller</div>' : '';
     return '<div class="book-card-wrap">' + badge +
         '<div class="book-card" style="cursor:pointer;" onclick="openBookModal(' + idx + ')">' +
-        '<div class="book-cover" style="height:240px;background-image:url(\'' + book.cover + '\');background-size:cover;background-position:center;background-color:var(--cream);" title="' + book.title + '"></div>' +
+        '<div class="book-cover" style="height:280px;background-image:url(\'' + book.cover + '\');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--cream);" title="' + book.title + '"></div>' +
         '<div class="book-info" style="padding:8px;">' +
         '<h3 class="book-title" style="font-size:14px;margin-bottom:2px;">' + book.title + '</h3>' +
         '<div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">' + book.genre + '</div>' +
@@ -1118,6 +1118,9 @@ function openBookModal(idx) {
     }
     document.getElementById('book-modal-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
+    // Tell parent iframe to scroll to top so modal is visible
+    try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
+    window.scrollTo(0, 0);
 }
 function openSampleReader() {
     if (!currentSample) return;
@@ -1128,6 +1131,8 @@ function openSampleReader() {
     document.getElementById('sample-buy-btn').href = currentSample.url;
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+    try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
+    window.scrollTo(0, 0);
 }
 function closeSampleReader() {
     document.getElementById('sample-overlay').classList.remove('active');
