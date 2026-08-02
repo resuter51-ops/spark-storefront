@@ -440,8 +440,8 @@
             .hero h1 { font-size: 34px; }
             .hero { min-height: 420px; }
             .nav-logo { font-size: 15px; letter-spacing: 0.5px; }
-            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
-            .nav-links a { font-size: 12px; white-space: nowrap; }
+            .nav-links { gap: 7px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 11px; white-space: nowrap; padding: 2px 4px; }
             .about-grid { grid-template-columns: 1fr; gap: 32px; }
             .book-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
             .about-cards { grid-template-columns: 1fr; }
@@ -452,8 +452,8 @@
         }
         @media (max-width: 480px) {
             .nav-logo { font-size: 13px; }
-            .nav-links { gap: 8px; }
-            .nav-links a { font-size: 11px; }
+            .nav-links { gap: 4px; flex-wrap: wrap; }
+            .nav-links a { font-size: 10px; padding: 2px 3px; }
             .hero h1 { font-size: 28px; }
             .hero-btn { font-size: 13px; padding: 10px 22px; }
         }
@@ -625,16 +625,11 @@
             <li><a onclick="showPage('books')" id="nav-books">Books</a></li>
             <li><a onclick="showPage('comics')" id="nav-comics">Comics</a></li>
             <li><a onclick="showPage('about')" id="nav-about">About</a></li>
-            <li style="position:relative;" id="more-dropdown">
-                <a onclick="toggleMoreMenu()" id="nav-more" style="cursor:pointer;">More &nbsp;&#9662;</a>
-                <div id="more-menu" style="display:none;position:absolute;top:100%;right:0;background:rgba(26,42,74,0.98);min-width:160px;border-radius:0 0 10px 10px;padding:8px 0;box-shadow:0 8px 20px rgba(0,0,0,0.3);z-index:1001;">
-                    <a onclick="showPage('author')" id="nav-author" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);cursor:pointer;">Author</a>
-                    <a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Arcade</a>
-                    <a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Jukebox</a>
-                    <a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Phrasebooks</a>
-                    <a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank" style="display:block;padding:8px 20px;font-size:13px;color:rgba(255,255,255,0.75);">Bob's Thoughts</a>
-                </div>
-            </li>
+            <li><a onclick="showPage('author')" id="nav-author">Author</a></li>
+            <li><a onclick="showPage('thoughts')" id="nav-thoughts">Thoughts</a></li>
+            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" id="nav-arcade">Arcade</a></li>
+            <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" id="nav-jukebox">Jukebox</a></li>
+            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" id="nav-phrasebooks">Phrasebooks</a></li>
         </ul>
     </div>
 </nav>
@@ -653,7 +648,7 @@
                 <a class="hero-btn secondary" onclick="showPage('comics')">Salvager Comics</a>
                 <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Bob's Arcade</a>
                 <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Bob's Jukebox</a>
-                <a class="hero-btn secondary" href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a>
+                <a class="hero-btn secondary" onclick="showPage('thoughts')" style="cursor:pointer;">Bob's Thoughts</a>
                 <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
             </div>
         </div>
@@ -774,6 +769,46 @@
     </div>
 </div>
 
+
+<!-- BOB'S THOUGHTS / BLOG PAGE -->
+<div class="page" id="page-thoughts">
+    <div style="background:linear-gradient(135deg,var(--navy),var(--dark));padding:60px 20px 40px;text-align:center;">
+        <h1 style="color:#fff;font-size:36px;margin-bottom:10px;font-family:Georgia,serif;">Bob's Thoughts</h1>
+        <p style="color:var(--gold);font-size:16px;font-style:italic;font-family:Arial, sans-serif">Stories, faith, humor, and an honest look at life from a wheelchair.</p>
+    </div>
+
+    <div style="max-width:800px;margin:0 auto;padding:40px 20px;">
+        <!-- Blog post card -->
+        <a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:30px;border:1px solid #e0ddd5;border-radius:14px;overflow:hidden;transition:box-shadow 0.3s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+            <div style="display:flex;flex-direction:column;">
+                <img src="https://images.unsplash.com/photo-1532012196779-4d4b8a8a3a3a?w=800&h=300&fit=crop" alt="Bob's Thoughts" style="width:100%;height:220px;object-fit:cover;background:var(--cream);" onerror="this.style.display='none'">
+                <div style="padding:24px;">
+                    <div style="font-size:13px;color:#999;font-family:Arial,sans-serif;margin-bottom:8px;">July 26, 2026</div>
+                    <h2 style="font-size:22px;font-family:Georgia,serif;color:var(--dark);margin-bottom:10px;line-height:1.3;">Welcome to Wheels and Words: Life Looks Different From Where I Sit</h2>
+                    <p style="font-size:15px;color:var(--light-text);font-family:Arial,sans-serif;line-height:1.7;">Welcome to Wheels and Words, a place for stories, faith, humor, encouragement, and an honest look at life from a wheelchair. The road may not be the one I planned, but it's the one I'm on &mdash; and there's plenty to share along the way.</p>
+                    <div style="margin-top:14px;color:var(--gold);font-size:14px;font-family:Arial,sans-serif;font-weight:bold;">Read More &rarr;</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- Coming soon note -->
+        <div style="text-align:center;padding:30px;border:1px dashed #ccc;border-radius:12px;margin-top:20px;">
+            <p style="font-size:15px;color:var(--light-text);font-family:Arial,sans-serif;">New posts coming soon. Check back for more from Bob!</p>
+        </div>
+
+        <!-- Quick nav back to other sections -->
+        <div style="text-align:center;margin-top:50px;padding-top:30px;border-top:1px solid #e0ddd5;">
+            <p style="font-size:14px;color:var(--light-text);font-family:Arial,sans-serif;margin-bottom:16px;">Explore more of Bob's world:</p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+                <button onclick="showPage('books')" style="padding:10px 24px;border:2px solid var(--gold);border-radius:8px;background:var(--gold);color:var(--dark);font-family:Arial,sans-serif;font-size:14px;font-weight:bold;cursor:pointer;">Bob's Books</button>
+                <button onclick="showPage('comics')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">Salvager Comics</button>
+                <button onclick="showPage('about')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">About</button>
+                <button onclick="showPage('author')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">Author</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
     <div class="footer-links">
@@ -785,25 +820,14 @@
         <a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
         <a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
         <a href="https://wordsandwheels.net" target="_blank">Store</a>
-        <a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a>
+        <a onclick="showPage('thoughts')" style="cursor:pointer;">Bob's Thoughts</a>
     </div>
     <p class="footer-credit">Words and Wheels &bull; The Creative World of Bob Suter &bull; &copy; 2026</p>
 </footer>
 
 <script>
 
-function toggleMoreMenu() {
-    var menu = document.getElementById('more-menu');
-    menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-}
-// Close menu when clicking outside
-document.addEventListener('click', function(e) {
-    var dropdown = document.getElementById('more-dropdown');
-    var menu = document.getElementById('more-menu');
-    if (dropdown && menu && !dropdown.contains(e.target)) {
-        menu.style.display = 'none';
-    }
-});
+// More dropdown removed — all nav items now visible directly
 
 var books = [
     {
