@@ -1,0 +1,42 @@
+<!-- WORDS & WHEELS — Auto-Loader v3 -->
+<!-- Paste this into Payhip's Custom Code area. 
+     It loads the latest site from GitHub Pages automatically.
+     Future updates will appear on wordsandwheels.net without any manual steps. -->
+<div id="waw-loader">
+  <div style="text-align:center;padding:60px 20px;font-family:Arial,sans-serif;color:#1a2a4a;">
+    <h2 style="font-size:22px;margin-bottom:8px;">Words and Wheels</h2>
+    <p style="color:#888;font-size:14px;">Loading…</p>
+  </div>
+</div>
+<script>
+(function() {
+  var container = document.getElementById('waw-loader');
+  var frame = document.createElement('iframe');
+  frame.src = 'https://resuter51-ops.github.io/spark-storefront/';
+  frame.style.cssText = 'width:100%;border:0;display:block;min-height:100vh;';
+  frame.setAttribute('scrolling', 'no');
+  frame.setAttribute('id', 'waw-frame');
+  
+  frame.addEventListener('load', function() {
+    container.style.display = 'none';
+    function resize() {
+      try {
+        var h = frame.contentWindow.document.body.scrollHeight;
+        frame.style.height = (h + 50) + 'px';
+      } catch(e) {}
+    }
+    resize();
+    setInterval(resize, 500);
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'resize' && e.data.height) {
+        frame.style.height = (e.data.height + 20) + 'px';
+      }
+      if (e.data && e.data.type === 'scroll-top' && e.data.source === 'words-and-wheels') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+  
+  container.parentNode.replaceChild(frame, container);
+})();
+</script>

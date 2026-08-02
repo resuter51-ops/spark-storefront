@@ -717,7 +717,7 @@
         </div>
 
         <div class="comics-nav">
-            <button onclick="showPage('books')">Back to Books</button>
+            <button onclick="showPage('books')">Browse Books</button>
             <span class="strip-counter">Strip 1 of 1</span>
             <button onclick="showPage('home')">Home</button>
         </div>
@@ -811,7 +811,7 @@ var books = [
         subtitle: "The Salvager Series, Book 1",
         genre: "Fiction / Thriller",
         price: "$3.99",
-        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/e93ee0392_The-Salvager-Book-1-The-Sisters-Plea-original1.png",
+        cover: "covers/book1-sisters-plea.png",
         description: "When Claire Whitman asks Zeke Carter to find her brother Marcus, she sets in motion a tense, atmospheric thriller about manipulation, belonging, and the cost of saving people who have to choose to be saved.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/LT8JN"
@@ -869,7 +869,7 @@ Zeke carried his mug to the machine beside him. "Bad odds," he said.
         subtitle: "The Salvager Series, Book 2",
         genre: "Fiction / Thriller",
         price: "$3.99",
-        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/fdad1eb35_Book-2-The-Runaway-Daughter-original.jpg",
+        cover: "covers/book2-runaway-daughter.jpg",
         description: "Seventeen-year-old Leah Whitfield is not missing \u2014 she's chosen. She's found her voice inside The Canvas, an art collective run by Seraphine Dax: magnetic, barefoot, dangerous.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/cNnI5"
@@ -955,7 +955,7 @@ But she didn't tear it up either.`
         subtitle: "The Salvager Series, Book 3",
         genre: "Fiction / Thriller",
         price: "$3.99",
-        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/77aeb680d_ChatGPTImageDec31202510_05_31AM.png",
+        cover: "covers/book3-network.png",
         description: "When Evan Rourke returns from six weeks missing speaking of 'borrowed clarity,' Zeke Carter recognizes the signs of a precision-engineered manipulation network.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/gJn2b"
@@ -1061,7 +1061,7 @@ Somewhere unseen, something shifted.`
         subtitle: "A heartwarming love story set in a nursing home",
         genre: "Fiction / Romance",
         price: "$2.99",
-        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/449261a75_cover.jpg",
+        cover: "covers/book4-happiness.jpg",
         description: "A tender and uplifting story about two unlikely souls and the enduring power of human connection.",
         bestseller: true,
         payhip_url: "https://wordsandwheels.net/b/q0DKv",
@@ -1072,7 +1072,7 @@ Somewhere unseen, something shifted.`
         subtitle: "A nostalgic trip back to simpler times",
         genre: "Creative Nonfiction / Memoir",
         price: "$3.99",
-        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/25e7a2f41_Just-Another-Typical-Day-in-Valley-Fair-original.jpg",
+        cover: "covers/book5-valley-fair.jpg",
         description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center \u2014 a love letter to a vanished era of American life.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/JQZ8A",
@@ -1167,6 +1167,8 @@ function showPage(page) {
     var navLink = document.getElementById('nav-' + page);
     if (navLink) navLink.classList.add('active');
     window.scrollTo(0, 0);
+    // Tell parent iframe to scroll to top too
+    try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
 }
 
 renderBooks();
