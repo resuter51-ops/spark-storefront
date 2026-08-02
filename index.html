@@ -460,7 +460,7 @@
 
         /* BOOK DETAIL MODAL */
         .book-modal-overlay {
-            position: absolute;
+            position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
             background: rgba(15,24,37,0.8);
             z-index: 5000;
@@ -551,7 +551,7 @@
         }
         .book-modal-buy:hover { background: var(--dark); }
         .book-modal-close {
-            position: absolute;
+            position: fixed;
             top: 10px; right: 14px;
             background: rgba(0,0,0,0.1);
             border: none;
@@ -1505,7 +1505,7 @@ document.addEventListener('keydown', function(e) {
     text-indent: 2em;
 }
 .sample-close {
-    position: absolute;
+    position: fixed;
     top: 16px; right: 20px;
     background: none;
     border: none;
