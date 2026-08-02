@@ -1085,7 +1085,7 @@ function bookCard(book) {
     var badge = book.bestseller ? '<div class="bestseller-badge">\u2605 Bestseller</div>' : '';
     return '<div class="book-card-wrap">' + badge +
         '<div class="book-card" style="cursor:pointer;" onclick="openBookModal(' + idx + ')">' +
-        '<img class="book-cover" src="' + book.cover + '" alt="' + book.title + '" loading="lazy" style="height:240px;object-fit:cover;display:block;">' +
+        '<div class="book-cover" style="height:240px;background-image:url(\'' + book.cover + '\');background-size:cover;background-position:center;background-color:var(--cream);" title="' + book.title + '"></div>' +
         '<div class="book-info" style="padding:8px;">' +
         '<h3 class="book-title" style="font-size:14px;margin-bottom:2px;">' + book.title + '</h3>' +
         '<div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">' + book.genre + '</div>' +
