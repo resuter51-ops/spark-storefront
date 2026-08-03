@@ -434,6 +434,59 @@
         }
         .search-bar input:focus { border-color: var(--gold); }
         .search-bar input::placeholder { color: #999; }
+        .section-nav {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #e0ddd5;
+            margin-top: 20px;
+        }
+        .section-nav-label {
+            font-size: 14px;
+            color: var(--light-text);
+            font-family: Arial, sans-serif;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        .section-nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+        .section-nav-buttons a, .section-nav-buttons button {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            text-decoration: none;
+            border: 2px solid var(--gold);
+        }
+        .section-nav-buttons a:hover, .section-nav-buttons button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .section-nav-buttons .nav-primary {
+            background: var(--gold);
+            color: var(--dark);
+        }
+        .section-nav-buttons .nav-primary:hover {
+            background: #c49b3f;
+        }
+        .section-nav-buttons .nav-secondary {
+            background: transparent;
+            color: var(--navy);
+            border-color: var(--navy);
+        }
+        .section-nav-buttons .nav-secondary:hover {
+            background: rgba(26,42,74,0.08);
+        }
+
         /* HAMBURGER MENU */
         .nav-hamburger {
             display: none;
@@ -740,10 +793,23 @@
 <div class="page" id="page-books">
     <div class="section" style="padding-top:20px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
-            <h2 style="font-size:22px;color:var(--navy);font-weight:normal;">All Books</h2>
+            <h2 class="section-title" style="text-align:left;font-size:22px;">All Books</h2>
             <input type="text" id="search-input" placeholder="Search..." oninput="filterBooks(this.value)" style="background:white;border:2px solid rgba(26,42,74,0.12);border-radius:50px;padding:8px 18px;font-size:13px;width:200px;font-family:Arial,sans-serif;outline:none;">
         </div>
         <div class="book-grid" id="all-books-grid" style="gap:12px;"></div>
+        <div class="section-nav">
+            <div class="section-nav-label">Explore More of Bob's World</div>
+            <div class="section-nav-buttons">
+                <button class="nav-secondary" onclick="showPage('home')">Home</button>
+                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
+                <button class="nav-secondary" onclick="showPage('about')">About</button>
+                <button class="nav-secondary" onclick="showPage('author')">Author</button>
+                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -751,8 +817,9 @@
 <!-- SALVAGER COMICS PAGE -->
 <div class="page" id="page-comics">
     <div class="comics-page">
-        <div class="comics-header">
-            <h2>The Salvager Comics</h2>
+        <div class="section-header" style="margin-bottom:24px;">
+            <span class="section-label">Graphic Stories</span>
+            <h2 class="section-title">The Salvager Comics</h2>
             <p>New adventures of Zeke Carter &mdash; ex-cop, reluctant savior, and the man who stands next to doors. Original comic strips set in the world of The Salvager series.</p>
         </div>
 
@@ -790,11 +857,6 @@
             </div>
         </div>
 
-        <div class="comics-nav">
-            <button onclick="showPage('books')">Browse Books</button>
-            <span class="strip-counter">Strip 1 of 1</span>
-            <button onclick="showPage('home')">Home</button>
-        </div>
     </div>
 </div>
 
@@ -822,9 +884,19 @@
                     <p>Free arcade games, a jukebox with 23 original tracks, comic strips, and Bob's Thoughts blog &mdash; all in one place.</p>
                 </div>
             </div>
-            <div class="cta-section">
-                <button class="hero-btn" onclick="showPage('books')">Browse the Collection</button>
+        <div class="section-nav">
+            <div class="section-nav-label">Explore More of Bob's World</div>
+            <div class="section-nav-buttons">
+                <button class="nav-secondary" onclick="showPage('home')">Home</button>
+                <button class="nav-primary" onclick="showPage('books')">Books</button>
+                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
+                <button class="nav-secondary" onclick="showPage('author')">Author</button>
+                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
             </div>
+        </div>
         </div>
     </div>
 </div>
@@ -842,12 +914,36 @@
             <p>From the gripping thriller world of The Salvager series to the warmth of Happiness Finds Big Man and the nostalgic charm of Just Another Typical Day in Valley Fair, every book in the catalog reflects a commitment to storytelling that earns its place in your hands.</p>
             <p>All books are available as instant digital downloads &mdash; no shipping, no waiting. Just great reading, delivered to your device the moment you're ready.</p>
         </div>
-        <div class="cta-section">
-            <button class="hero-btn" onclick="showPage('books')">Browse the Books</button>
+        <div class="section-nav">
+            <div class="section-nav-label">Explore More of Bob's World</div>
+            <div class="section-nav-buttons">
+                <button class="nav-secondary" onclick="showPage('home')">Home</button>
+                <button class="nav-primary" onclick="showPage('books')">Books</button>
+                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
+                <button class="nav-secondary" onclick="showPage('about')">About</button>
+                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+            </div>
         </div>
     </div>
 </div>
 
+
+        <div class="section-nav">
+            <div class="section-nav-label">Explore More of Bob's World</div>
+            <div class="section-nav-buttons">
+                <button class="nav-secondary" onclick="showPage('home')">Home</button>
+                <button class="nav-primary" onclick="showPage('books')">Books</button>
+                <button class="nav-secondary" onclick="showPage('about')">About</button>
+                <button class="nav-secondary" onclick="showPage('author')">Author</button>
+                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+            </div>
+        </div>
 
 <!-- BOB'S THOUGHTS / BLOG PAGE -->
 <div class="page" id="page-thoughts">
@@ -875,14 +971,17 @@
             <p style="font-size:15px;color:var(--light-text);font-family:Arial,sans-serif;">New posts coming soon. Check back for more from Bob!</p>
         </div>
 
-        <!-- Quick nav back to other sections -->
-        <div style="text-align:center;margin-top:50px;padding-top:30px;border-top:1px solid #e0ddd5;">
-            <p style="font-size:14px;color:var(--light-text);font-family:Arial,sans-serif;margin-bottom:16px;">Explore more of Bob's world:</p>
-            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
-                <button onclick="showPage('books')" style="padding:10px 24px;border:2px solid var(--gold);border-radius:8px;background:var(--gold);color:var(--dark);font-family:Arial,sans-serif;font-size:14px;font-weight:bold;cursor:pointer;">Bob's Books</button>
-                <button onclick="showPage('comics')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">Salvager Comics</button>
-                <button onclick="showPage('about')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">About</button>
-                <button onclick="showPage('author')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">Author</button>
+        <div class="section-nav">
+            <div class="section-nav-label">Explore More of Bob's World</div>
+            <div class="section-nav-buttons">
+                <button class="nav-secondary" onclick="showPage('home')">Home</button>
+                <button class="nav-primary" onclick="showPage('books')">Books</button>
+                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
+                <button class="nav-secondary" onclick="showPage('about')">About</button>
+                <button class="nav-secondary" onclick="showPage('author')">Author</button>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
+                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
             </div>
         </div>
     </div>
