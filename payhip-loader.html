@@ -1,4 +1,4 @@
-<!-- WORDS & WHEELS — Auto-Loader v7 -->
+<!-- WORDS & WHEELS — Auto-Loader v8.2 -->
 <!-- Paste this into Payhip's Custom Code area. -->
 <div id="waw-loader">
   <div style="text-align:center;padding:60px 20px;font-family:Arial,sans-serif;color:#1a2a4a;">
@@ -10,6 +10,7 @@
 <script>
 (function() {
   function hideChrome() {
+    // Hide Payhip's headers, navs, footers
     document.querySelectorAll('header, nav').forEach(function(el) {
       if (el.id !== 'waw-frame' && !el.contains(document.getElementById('waw-frame'))) {
         el.style.display = 'none';
@@ -18,6 +19,22 @@
     document.querySelectorAll('footer, .footer, [class*="footer"], [class*="powered"]').forEach(function(el) {
       if (el.id !== 'waw-frame' && !el.querySelector('#waw-frame')) {
         el.style.display = 'none';
+      }
+    });
+    // Hide Payhip's hamburger / mobile menu toggle buttons
+    document.querySelectorAll('[class*="hamburger"], [class*="menu-toggle"], [class*="menu-btn"], [class*="burger"], [class*="mobile-nav"], [class*="nav-toggle"], [aria-label*="menu" i], [aria-label*="Menu"], button[data-toggle], .navbar-toggle').forEach(function(el) {
+      if (el.id !== 'waw-frame' && !el.contains(document.getElementById('waw-frame'))) {
+        el.style.display = 'none';
+      }
+    });
+    // Hide stray Payhip nav link text that sometimes lingers
+    document.querySelectorAll('a').forEach(function(a) {
+      var t = (a.textContent || '').trim();
+      if (t === 'SHOP' || t === 'Shop' || t === 'PLAY GAMES' || t === 'PHRASEBOOKS' || t === 'CONTACT' || t === 'Contact') {
+        // Only hide if it's not inside our iframe
+        if (!a.closest('#waw-frame')) {
+          a.style.display = 'none';
+        }
       }
     });
   }
