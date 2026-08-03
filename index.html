@@ -434,14 +434,76 @@
         }
         .search-bar input:focus { border-color: var(--gold); }
         .search-bar input::placeholder { color: #999; }
+        /* HAMBURGER MENU */
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            margin-left: auto;
+            z-index: 1001;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: 0.3s;
+        }
+        .nav-hamburger span + span { margin-top: 5px; }
+        .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+        .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(26,42,74,0.98);
+            backdrop-filter: blur(12px);
+            z-index: 999;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212,168,73,0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+        .mobile-menu ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .mobile-menu li {
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .mobile-menu li:last-child { border-bottom: none; }
+        .mobile-menu a {
+            display: block;
+            padding: 14px 24px;
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .mobile-menu a:hover, .mobile-menu a.active {
+            color: var(--gold);
+            background: rgba(212,168,73,0.1);
+        }
+
         /* RESPONSIVE */
-        @media (max-width: 768px) {
+        @media (max-width: 860px) {
             .book-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .hero h1 { font-size: 34px; }
             .hero { min-height: 420px; }
-            .nav-logo { font-size: 15px; letter-spacing: 0.5px; }
-            .nav-links { gap: 7px; flex-wrap: wrap; justify-content: center; }
-            .nav-links a { font-size: 11px; white-space: nowrap; padding: 2px 4px; }
+            .nav-logo { font-size: 16px; letter-spacing: 0.5px; }
+            .nav-hamburger { display: block; }
+            .nav-links { display: none; }
+            .mobile-menu.open { display: block; }
             .about-grid { grid-template-columns: 1fr; gap: 32px; }
             .book-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
             .about-cards { grid-template-columns: 1fr; }
@@ -452,8 +514,6 @@
         }
         @media (max-width: 480px) {
             .nav-logo { font-size: 13px; }
-            .nav-links { gap: 4px; flex-wrap: wrap; }
-            .nav-links a { font-size: 10px; padding: 2px 3px; }
             .hero h1 { font-size: 28px; }
             .hero-btn { font-size: 13px; padding: 10px 22px; }
         }
@@ -631,8 +691,27 @@
             <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" id="nav-jukebox">Jukebox</a></li>
             <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" id="nav-phrasebooks">Phrasebooks</a></li>
         </ul>
+        <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </nav>
+<!-- MOBILE DROPDOWN MENU -->
+<div class="mobile-menu" id="mobile-menu">
+    <ul>
+        <li><a onclick="showPageMobile('home')" id="mnav-home">Home</a></li>
+        <li><a onclick="showPageMobile('books')" id="mnav-books">Books</a></li>
+        <li><a onclick="showPageMobile('comics')" id="mnav-comics">Comics</a></li>
+        <li><a onclick="showPageMobile('about')" id="mnav-about">About</a></li>
+        <li><a onclick="showPageMobile('author')" id="mnav-author">Author</a></li>
+        <li><a onclick="showPageMobile('thoughts')" id="mnav-thoughts">Thoughts</a></li>
+        <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" onclick="closeMobileMenu()">Arcade</a></li>
+        <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" onclick="closeMobileMenu()">Jukebox</a></li>
+        <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" onclick="closeMobileMenu()">Phrasebooks</a></li>
+    </ul>
+</div>
 
 <!-- HOME PAGE -->
 <div class="page active" id="page-home">
@@ -725,7 +804,7 @@
         <div class="section">
             <div class="section-header">
                 <span class="section-label">Our Story</span>
-                <h2 class="section-title">Words and Wheels \u2014 About</h2>
+                <h2 class="section-title">Words and Wheels — About</h2>
                 <p class="section-subtitle">A creative publishing and entertainment hub &mdash; books, games, music, comics, and more.</p>
             </div>
             <div style="max-width:700px;margin:0 auto;">
@@ -755,7 +834,7 @@
     <div class="author-section">
         <div class="section-header" style="margin-bottom:40px;">
             <span class="section-label">Meet the Author</span>
-            <h2 class="section-title">Words and Wheels \u2014 Robert Suter</h2>
+            <h2 class="section-title">Words and Wheels — Robert Suter</h2>
         </div>
         <div class="author-content">
             <p>Robert Suter is a wheelchair user, author, publisher, songwriter, and creator living in Toms River, New Jersey. He writes with determination and imagination under the pen names Jack Baptiste and R. E. Suter, proving that stories don't retire.</p>
@@ -894,7 +973,7 @@ Zeke carried his mug to the machine beside him. "Bad odds," he said.
         genre: "Fiction / Thriller",
         price: "$3.99",
         cover: "covers/book2-runaway-daughter.jpg",
-        description: "Seventeen-year-old Leah Whitfield is not missing \u2014 she's chosen. She's found her voice inside The Canvas, an art collective run by Seraphine Dax: magnetic, barefoot, dangerous.",
+        description: "Seventeen-year-old Leah Whitfield is not missing — she's chosen. She's found her voice inside The Canvas, an art collective run by Seraphine Dax: magnetic, barefoot, dangerous.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/cNnI5"
     ,
@@ -1097,7 +1176,7 @@ Somewhere unseen, something shifted.`
         genre: "Creative Nonfiction / Memoir",
         price: "$3.99",
         cover: "covers/book5-valley-fair.jpg",
-        description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center \u2014 a love letter to a vanished era of American life.",
+        description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center — a love letter to a vanished era of American life.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/JQZ8A",
         sample: `It was the summer of 1968 when I first walked into Valley Fair to apply for a job. I had my eye on the grocery department, but I wasn't picky—just needed work. Jimmy Barlow, the man doing the hiring, gave me a quick once-over and said they had an opening in produce. I told him I'd be happy to take it.\n\nThat very night, I started. My first introduction was to the produce manager, Elmo. He was a wiry guy with a gaunt face, always smelling faintly of cigarettes and cheap whiskey. Elmo had a reputation—drinking on the job, gambling on Fridays. Every week, there was a card game going on in the back office of the deli department, and it wasn't after hours either. It happened right in the middle of store time, while customers pushed carts down the aisles and kids begged for candy near the registers. It was just one of those things—unspoken, but well-known.\n\nNext up was Den-Den, the other part-time worker. He was the one breaking me in. Den-Den wasn't the hardest worker—he liked to take it easy—but he treated me fairly and showed me the ropes.\n\nThe very first thing Den-Den showed me was how to use the scale. It was a big piece of equipment, maybe two and a half feet long, with a flat metal plate to match—perfect for weighing bags of produce or loose vegetables. Above that was a long, lit display window with a red line running through the middle. Across the top were all the different price points, and to the left were the weight markings in pounds and ounces.\n\nIt wasn't rocket science, but for a kid just starting out, it was a little intimidating—especially when you had to price something that cost more than the scale would calculate.\n\nThe trick was to weigh it, find the price for half, and then double it in your head.\n\nYou also had to learn to tell the difference between the fruits and vegetables, and more importantly, memorize the price per pound for each one.\n\nDen-Den drilled me hard on that scale. At first, I thought he was being generous—making sure I got the hang of things. Later I realized he just wanted to make sure I could handle the scale so he could disappear for most of the night. Like I said, Den-Den wasn't exactly management material.`
@@ -1189,12 +1268,29 @@ function filterBooks(query) {
     document.getElementById('all-books-grid').innerHTML = filtered.map(bookCard).join('');
 }
 
+function toggleMobileMenu() {
+    var btn = document.getElementById('nav-hamburger');
+    var menu = document.getElementById('mobile-menu');
+    btn.classList.toggle('open');
+    menu.classList.toggle('open');
+}
+function closeMobileMenu() {
+    document.getElementById('nav-hamburger').classList.remove('open');
+    document.getElementById('mobile-menu').classList.remove('open');
+}
+function showPageMobile(page) {
+    showPage(page);
+    closeMobileMenu();
+}
+
 function showPage(page) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     document.getElementById('page-' + page).classList.add('active');
-    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function(a) { a.classList.remove('active'); });
     var navLink = document.getElementById('nav-' + page);
     if (navLink) navLink.classList.add('active');
+    var mnavLink = document.getElementById('mnav-' + page);
+    if (mnavLink) mnavLink.classList.add('active');
     window.scrollTo(0, 0);
     // Tell parent iframe to scroll to top too
     try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
