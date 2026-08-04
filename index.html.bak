@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Words & Wheels — The Creative World of Bob Suter</title>
-    <meta name="description" content="The creative world of Bob Suter — books, games, music, comics, thoughts, faith, and life from a different point of view.">
+    <title>Words and Wheels — Stories Worth Reading</title>
+    <meta name="description" content="A digital bookstore dedicated to stories that matter. Instant digital downloads. Read on any device, anytime.">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -16,7 +16,7 @@
             --light-text: #666;
             --white: #ffffff;
         }
-        body { position: relative;
+        body {
             font-family: Georgia, 'Times New Roman', serif;
             background: var(--cream);
             color: var(--text);
@@ -227,10 +227,10 @@
         }
         .book-cover {
             width: 100%;
-            height: 240px;
+            aspect-ratio: 2/3;
             object-fit: cover;
             background: var(--cream);
-            display: block;
+            max-height: 200px;
         }
         .book-info {
             padding: 14px;
@@ -434,129 +434,14 @@
         }
         .search-bar input:focus { border-color: var(--gold); }
         .search-bar input::placeholder { color: #999; }
-        .section-nav {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #e0ddd5;
-            margin-top: 20px;
-        }
-        .section-nav-label {
-            font-size: 14px;
-            color: var(--light-text);
-            font-family: Arial, sans-serif;
-            margin-bottom: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-        .section-nav-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-        .section-nav-buttons a, .section-nav-buttons button {
-            display: inline-block;
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            text-decoration: none;
-            border: 2px solid var(--gold);
-        }
-        .section-nav-buttons a:hover, .section-nav-buttons button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .section-nav-buttons .nav-primary {
-            background: var(--gold);
-            color: var(--dark);
-        }
-        .section-nav-buttons .nav-primary:hover {
-            background: #c49b3f;
-        }
-        .section-nav-buttons .nav-secondary {
-            background: transparent;
-            color: var(--navy);
-            border-color: var(--navy);
-        }
-        .section-nav-buttons .nav-secondary:hover {
-            background: rgba(26,42,74,0.08);
-        }
-
-        /* HAMBURGER MENU */
-        .nav-hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            margin-left: auto;
-            z-index: 1001;
-        }
-        .nav-hamburger span {
-            display: block;
-            width: 24px;
-            height: 3px;
-            background: var(--gold);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-        .nav-hamburger span + span { margin-top: 5px; }
-        .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-        .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background: rgba(26,42,74,0.98);
-            backdrop-filter: blur(12px);
-            z-index: 999;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(212,168,73,0.3);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-        }
-        .mobile-menu ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .mobile-menu li {
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .mobile-menu li:last-child { border-bottom: none; }
-        .mobile-menu a {
-            display: block;
-            padding: 14px 24px;
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        .mobile-menu a:hover, .mobile-menu a.active {
-            color: var(--gold);
-            background: rgba(212,168,73,0.1);
-        }
-
         /* RESPONSIVE */
-        @media (max-width: 860px) {
+        @media (max-width: 768px) {
             .book-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .hero h1 { font-size: 34px; }
             .hero { min-height: 420px; }
-            .nav-logo { font-size: 16px; letter-spacing: 0.5px; }
-            .nav-hamburger { display: block; }
-            .nav-links { display: none; }
-            .mobile-menu.open { display: block; }
+            .nav-logo { font-size: 15px; letter-spacing: 0.5px; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 12px; white-space: nowrap; }
             .about-grid { grid-template-columns: 1fr; gap: 32px; }
             .book-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
             .about-cards { grid-template-columns: 1fr; }
@@ -567,6 +452,8 @@
         }
         @media (max-width: 480px) {
             .nav-logo { font-size: 13px; }
+            .nav-links { gap: 8px; }
+            .nav-links a { font-size: 11px; }
             .hero h1 { font-size: 28px; }
             .hero-btn { font-size: 13px; padding: 10px 22px; }
         }
@@ -588,9 +475,8 @@
             border-radius: 16px;
             max-width: 700px;
             width: 100%;
-            max-height: 600px;
+            max-height: 85vh;
             overflow-y: auto;
-            overflow-x: hidden;
             display: flex;
             position: relative;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
@@ -602,7 +488,7 @@
             border-radius: 16px 0 0 16px;
             flex-shrink: 0;
         }
-        .book-modal-body { position: relative;
+        .book-modal-body {
             padding: 30px 28px;
             flex: 1;
             display: flex;
@@ -734,38 +620,19 @@
 <nav>
     <div class="nav-inner">
         <a class="nav-logo" onclick="showPage('home')">WORDS &amp; WHEELS</a>
-        <ul class="nav-links" id="main-nav">
+        <ul class="nav-links">
             <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
             <li><a onclick="showPage('books')" id="nav-books">Books</a></li>
-            <li><a onclick="showPage('comics')" id="nav-comics">Comics</a></li>
+            <li><a onclick="showPage('comics')" id="nav-comics">Salvager Comics</a></li>
             <li><a onclick="showPage('about')" id="nav-about">About</a></li>
             <li><a onclick="showPage('author')" id="nav-author">Author</a></li>
-            <li><a onclick="showPage('thoughts')" id="nav-thoughts">Thoughts</a></li>
-            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" id="nav-arcade">Arcade</a></li>
-            <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" id="nav-jukebox">Jukebox</a></li>
-            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" id="nav-phrasebooks">Phrasebooks</a></li>
+            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a></li>
+            <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a></li>
+            <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a></li>
+            <li><a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a></li>
         </ul>
-        <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </div>
 </nav>
-<!-- MOBILE DROPDOWN MENU -->
-<div class="mobile-menu" id="mobile-menu">
-    <ul>
-        <li><a onclick="showPageMobile('home')" id="mnav-home">Home</a></li>
-        <li><a onclick="showPageMobile('books')" id="mnav-books">Books</a></li>
-        <li><a onclick="showPageMobile('comics')" id="mnav-comics">Comics</a></li>
-        <li><a onclick="showPageMobile('about')" id="mnav-about">About</a></li>
-        <li><a onclick="showPageMobile('author')" id="mnav-author">Author</a></li>
-        <li><a onclick="showPageMobile('thoughts')" id="mnav-thoughts">Thoughts</a></li>
-        <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" onclick="closeMobileMenu()">Arcade</a></li>
-        <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" onclick="closeMobileMenu()">Jukebox</a></li>
-        <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" onclick="closeMobileMenu()">Phrasebooks</a></li>
-    </ul>
-</div>
 
 <!-- HOME PAGE -->
 <div class="page active" id="page-home">
@@ -774,15 +641,14 @@
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>The Creative World of<br><span class="accent">Bob Suter</span></h1>
-            <p>Books, games, music, comics, thoughts, faith, and life from a different point of view.</p>
+            <h1>Stories Worth<br><span class="accent">Reading.</span></h1>
+            <p>Instant digital downloads. Read on any device, anytime.</p>
             <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;">
-                <button class="hero-btn" onclick="showPage('books')">Bob's Books</button>
-                <a class="hero-btn secondary" onclick="showPage('comics')">Salvager Comics</a>
-                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Bob's Arcade</a>
-                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Bob's Jukebox</a>
-                <a class="hero-btn secondary" onclick="showPage('thoughts')" style="cursor:pointer;">Bob's Thoughts</a>
+                <button class="hero-btn" onclick="showPage('books')">Browse Books</button>
                 <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+                <a class="hero-btn secondary" onclick="showPage('comics')">Salvager Comics</a>
+                <a class="hero-btn secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Play Arcade</a>
+                <a class="hero-btn secondary" href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a>
             </div>
         </div>
     </div>
@@ -794,23 +660,10 @@
 <div class="page" id="page-books">
     <div class="section" style="padding-top:20px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
-            <h2 class="section-title" style="text-align:left;font-size:22px;">All Books</h2>
+            <h2 style="font-size:22px;color:var(--navy);font-weight:normal;">All Books</h2>
             <input type="text" id="search-input" placeholder="Search..." oninput="filterBooks(this.value)" style="background:white;border:2px solid rgba(26,42,74,0.12);border-radius:50px;padding:8px 18px;font-size:13px;width:200px;font-family:Arial,sans-serif;outline:none;">
         </div>
         <div class="book-grid" id="all-books-grid" style="gap:12px;"></div>
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -818,9 +671,8 @@
 <!-- SALVAGER COMICS PAGE -->
 <div class="page" id="page-comics">
     <div class="comics-page">
-        <div class="section-header" style="margin-bottom:24px;">
-            <span class="section-label">Graphic Stories</span>
-            <h2 class="section-title">The Salvager Comics</h2>
+        <div class="comics-header">
+            <h2>The Salvager Comics</h2>
             <p>New adventures of Zeke Carter &mdash; ex-cop, reluctant savior, and the man who stands next to doors. Original comic strips set in the world of The Salvager series.</p>
         </div>
 
@@ -858,6 +710,11 @@
             </div>
         </div>
 
+        <div class="comics-nav">
+            <button onclick="showPage('books')">Back to Books</button>
+            <span class="strip-counter">Strip 1 of 1</span>
+            <button onclick="showPage('home')">Home</button>
+        </div>
     </div>
 </div>
 
@@ -867,13 +724,13 @@
         <div class="section">
             <div class="section-header">
                 <span class="section-label">Our Story</span>
-                <h2 class="section-title">Words and Wheels — About</h2>
-                <p class="section-subtitle">A creative publishing and entertainment hub &mdash; books, games, music, comics, and more.</p>
+                <h2 class="section-title">Words and Wheels \u2014 About</h2>
+                <p class="section-subtitle">A digital bookstore dedicated to stories that matter &mdash; delivered instantly to your device.</p>
             </div>
             <div style="max-width:700px;margin:0 auto;">
-                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Words and Wheels was born from a simple belief: great stories should be accessible to everyone, anywhere, at any moment. What started as a digital bookstore has grown into a creative publishing and entertainment hub &mdash; books, arcade games, original music, comic strips, phrasebooks, and a blog, all created by Bob Suter.</p>
-                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Our catalog spans fiction, thriller, memoir, and creative nonfiction. Whether it's the gripping Salvager series by Jack Baptiste, the warm heart of Happiness Finds Big Man, or the nostalgic world of Valley Fair, every book we carry is chosen because it earns its place on your reading list. Beyond the books, Bob's Arcade offers free games inspired by the characters, Bob's Jukebox features 23 original songs, and the Salvager Comics section expands Zeke Carter's world panel by panel.</p>
-                <p style="color:var(--light-text);font-size:17px;margin-bottom:32px;">All books are published by R. E. Suter and available exclusively as instant digital downloads. No shipping. No waiting. Just great reading &mdash; plus free games, music, and comics to explore.</p>
+                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Words and Wheels was born from a simple belief: great stories should be accessible to everyone, anywhere, at any moment. We publish and sell digital books that you can start reading within seconds of purchase.</p>
+                <p style="color:var(--light-text);font-size:17px;margin-bottom:20px;">Our catalog spans fiction, thriller, memoir, and creative nonfiction. Whether it's the gripping Salvager series by Jack Baptiste, the warm heart of Happiness Finds Big Man, or the nostalgic world of Valley Fair, every book we carry is chosen because it earns its place on your reading list.</p>
+                <p style="color:var(--light-text);font-size:17px;margin-bottom:32px;">All books are published by R. E. Suter and available exclusively as instant digital downloads. No shipping. No waiting. Just great reading.</p>
             </div>
             <div class="about-cards" style="max-width:600px;margin:0 auto;">
                 <div class="about-card">
@@ -881,23 +738,13 @@
                     <p>Every book is delivered instantly as an ebook. Buy once, read forever on any device.</p>
                 </div>
                 <div class="about-card">
-                    <h3>More Than Books</h3>
-                    <p>Free arcade games, a jukebox with 23 original tracks, comic strips, and Bob's Thoughts blog &mdash; all in one place.</p>
+                    <h3>Get in Touch</h3>
+                    <p>Questions about an order or a book? We're here to help. Reach out any time and we'll get back to you promptly.</p>
                 </div>
             </div>
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
+            <div class="cta-section">
+                <button class="hero-btn" onclick="showPage('books')">Browse the Collection</button>
             </div>
-        </div>
         </div>
     </div>
 </div>
@@ -907,96 +754,16 @@
     <div class="author-section">
         <div class="section-header" style="margin-bottom:40px;">
             <span class="section-label">Meet the Author</span>
-            <h2 class="section-title">Words and Wheels — Robert Suter</h2>
+            <h2 class="section-title">Words and Wheels \u2014 Robert Suter</h2>
         </div>
         <div class="author-content">
-            <p>Robert Suter is a wheelchair user, author, publisher, songwriter, and creator living in Toms River, New Jersey. He writes with determination and imagination under the pen names Jack Baptiste and R. E. Suter, proving that stories don't retire.</p>
-            <p>R. E. Suter is the publisher and creative force behind Words and Wheels &mdash; a creative publishing and entertainment hub built on the belief that great stories should reach anyone, anywhere, instantly.</p>
+            <p>Robert Suter, born in Newark, New Jersey, now resides at Hampton Ridge Healthcare and Rehabilitation in Toms River, New Jersey. He is confined to a wheelchair. At 74, he continues to write with determination and imagination under the pen names Jack Baptiste and R. E. Suter, proving that stories don't retire.</p>
+            <p>R. E. Suter is the publisher and creative force behind Words and Wheels &mdash; a digital bookstore built on the belief that great stories should reach anyone, anywhere, instantly.</p>
             <p>From the gripping thriller world of The Salvager series to the warmth of Happiness Finds Big Man and the nostalgic charm of Just Another Typical Day in Valley Fair, every book in the catalog reflects a commitment to storytelling that earns its place in your hands.</p>
             <p>All books are available as instant digital downloads &mdash; no shipping, no waiting. Just great reading, delivered to your device the moment you're ready.</p>
         </div>
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-            </div>
-        </div>
-
-<!-- BOB'S THOUGHTS / BLOG PAGE -->
-<div class="page" id="page-thoughts">
-    <div style="background:linear-gradient(135deg,var(--navy),var(--dark));padding:60px 20px 40px;text-align:center;">
-        <h1 style="color:#fff;font-size:36px;margin-bottom:10px;font-family:Georgia,serif;">Bob's Thoughts</h1>
-        <p style="color:var(--gold);font-size:16px;font-style:italic;font-family:Arial, sans-serif">Stories, faith, humor, and an honest look at life from a wheelchair.</p>
-    </div>
-
-    <div style="max-width:800px;margin:0 auto;padding:40px 20px;">
-        <!-- Blog post 1: The Great Breakfast Negotiations (newest) -->
-        <a href="https://wordsandwheels.net/blog/bob-s-thoughts/the-great-breakfast-negotiations" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:24px;border:1px solid #e0ddd5;border-radius:14px;overflow:hidden;transition:box-shadow 0.3s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-            <div style="display:flex;flex-direction:column;">
-                <img src="https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jv4mmmfnkmf1ntjbglj151jmsc.png" alt="The Great Breakfast Negotiations" style="width:100%;height:220px;object-fit:cover;background:var(--cream);" onerror="this.style.display='none'">
-                <div style="padding:24px;">
-                    <div style="font-size:13px;color:#999;font-family:Arial,sans-serif;margin-bottom:8px;">August 03, 2026</div>
-                    <h2 style="font-size:22px;font-family:Georgia,serif;color:var(--dark);margin-bottom:10px;line-height:1.3;">The Great Breakfast Negotiations</h2>
-                    <p style="font-size:15px;color:var(--light-text);font-family:Arial,sans-serif;line-height:1.7;">Living in a nursing home teaches you many things. It teaches patience. It teaches flexibility. It teaches gratitude. It also teaches that ordering breakfast can become more complicated than negotiating an international peace treaty.</p>
-                    <div style="margin-top:14px;color:var(--gold);font-size:14px;font-family:Arial,sans-serif;font-weight:bold;">Read More &rarr;</div>
-                </div>
-            </div>
-        </a>
-
-        <!-- Blog post 2: Welcome to Wheels and Words -->
-        <a href="https://wordsandwheels.net/blog/bob-s-thoughts/welcome-to-wheels-and-words-life-looks-different-from-where-i-sit" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:24px;border:1px solid #e0ddd5;border-radius:14px;overflow:hidden;transition:box-shadow 0.3s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-            <div style="display:flex;flex-direction:column;">
-                <img src="https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jugdmlo6t8op5r1fn3ks51fd4c.png" alt="Welcome to Wheels and Words" style="width:100%;height:220px;object-fit:cover;background:var(--cream);" onerror="this.style.display='none'">
-                <div style="padding:24px;">
-                    <div style="font-size:13px;color:#999;font-family:Arial,sans-serif;margin-bottom:8px;">July 26, 2026</div>
-                    <h2 style="font-size:22px;font-family:Georgia,serif;color:var(--dark);margin-bottom:10px;line-height:1.3;">Welcome to Wheels and Words: Life Looks Different From Where I Sit</h2>
-                    <p style="font-size:15px;color:var(--light-text);font-family:Arial,sans-serif;line-height:1.7;">Welcome to Wheels and Words, a place for stories, faith, humor, encouragement, and an honest look at life from a wheelchair. The road may not be the one I planned, but it's the one I'm on &mdash; and there's plenty to share along the way.</p>
-                    <div style="margin-top:14px;color:var(--gold);font-size:14px;font-family:Arial,sans-serif;font-weight:bold;">Read More &rarr;</div>
-                </div>
-            </div>
-        </a>
-
-        <!-- More posts note -->
-        <div style="text-align:center;padding:20px;margin-top:10px;">
-            <p style="font-size:14px;color:#aaa;font-family:Arial,sans-serif;font-style:italic;">More posts coming soon. Check back for more from Bob!</p>
-        </div>
-
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-            </div>
+        <div class="cta-section">
+            <button class="hero-btn" onclick="showPage('books')">Browse the Books</button>
         </div>
     </div>
 </div>
@@ -1012,22 +779,19 @@
         <a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
         <a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
         <a href="https://wordsandwheels.net" target="_blank">Store</a>
-        <a onclick="showPage('thoughts')" style="cursor:pointer;">Bob's Thoughts</a>
+        <a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank">Bob's Thoughts</a>
     </div>
-    <p class="footer-credit">Words and Wheels &bull; The Creative World of Bob Suter &bull; &copy; 2026</p>
+    <p class="footer-credit">Words and Wheels &bull; Stories Worth Reading &bull; &copy; 2026</p>
 </footer>
 
 <script>
-
-// More dropdown removed — all nav items now visible directly
-
 var books = [
     {
         title: "The Salvager: The Sister's Plea",
         subtitle: "The Salvager Series, Book 1",
         genre: "Fiction / Thriller",
         price: "$3.99",
-        cover: "covers/book1-sisters-plea.jpg",
+        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/e93ee0392_The-Salvager-Book-1-The-Sisters-Plea-original1.png",
         description: "When Claire Whitman asks Zeke Carter to find her brother Marcus, she sets in motion a tense, atmospheric thriller about manipulation, belonging, and the cost of saving people who have to choose to be saved.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/LT8JN"
@@ -1085,8 +849,8 @@ Zeke carried his mug to the machine beside him. "Bad odds," he said.
         subtitle: "The Salvager Series, Book 2",
         genre: "Fiction / Thriller",
         price: "$3.99",
-        cover: "covers/book2-runaway-daughter.jpg",
-        description: "Seventeen-year-old Leah Whitfield is not missing — she's chosen. She's found her voice inside The Canvas, an art collective run by Seraphine Dax: magnetic, barefoot, dangerous.",
+        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/fdad1eb35_Book-2-The-Runaway-Daughter-original.jpg",
+        description: "Seventeen-year-old Leah Whitfield is not missing \u2014 she's chosen. She's found her voice inside The Canvas, an art collective run by Seraphine Dax: magnetic, barefoot, dangerous.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/cNnI5"
     ,
@@ -1171,7 +935,7 @@ But she didn't tear it up either.`
         subtitle: "The Salvager Series, Book 3",
         genre: "Fiction / Thriller",
         price: "$3.99",
-        cover: "covers/book3-network.jpg",
+        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/77aeb680d_ChatGPTImageDec31202510_05_31AM.png",
         description: "When Evan Rourke returns from six weeks missing speaking of 'borrowed clarity,' Zeke Carter recognizes the signs of a precision-engineered manipulation network.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/gJn2b"
@@ -1277,7 +1041,7 @@ Somewhere unseen, something shifted.`
         subtitle: "A heartwarming love story set in a nursing home",
         genre: "Fiction / Romance",
         price: "$2.99",
-        cover: "covers/book4-happiness.jpg",
+        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/449261a75_cover.jpg",
         description: "A tender and uplifting story about two unlikely souls and the enduring power of human connection.",
         bestseller: true,
         payhip_url: "https://wordsandwheels.net/b/q0DKv",
@@ -1288,8 +1052,8 @@ Somewhere unseen, something shifted.`
         subtitle: "A nostalgic trip back to simpler times",
         genre: "Creative Nonfiction / Memoir",
         price: "$3.99",
-        cover: "covers/book5-valley-fair.jpg",
-        description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center — a love letter to a vanished era of American life.",
+        cover: "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/69a56850bf7db92bcf9a50d6/25e7a2f41_Just-Another-Typical-Day-in-Valley-Fair-original.jpg",
+        description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center \u2014 a love letter to a vanished era of American life.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/JQZ8A",
         sample: `It was the summer of 1968 when I first walked into Valley Fair to apply for a job. I had my eye on the grocery department, but I wasn't picky—just needed work. Jimmy Barlow, the man doing the hiring, gave me a quick once-over and said they had an opening in produce. I told him I'd be happy to take it.\n\nThat very night, I started. My first introduction was to the produce manager, Elmo. He was a wiry guy with a gaunt face, always smelling faintly of cigarettes and cheap whiskey. Elmo had a reputation—drinking on the job, gambling on Fridays. Every week, there was a card game going on in the back office of the deli department, and it wasn't after hours either. It happened right in the middle of store time, while customers pushed carts down the aisles and kids begged for candy near the registers. It was just one of those things—unspoken, but well-known.\n\nNext up was Den-Den, the other part-time worker. He was the one breaking me in. Den-Den wasn't the hardest worker—he liked to take it easy—but he treated me fairly and showed me the ropes.\n\nThe very first thing Den-Den showed me was how to use the scale. It was a big piece of equipment, maybe two and a half feet long, with a flat metal plate to match—perfect for weighing bags of produce or loose vegetables. Above that was a long, lit display window with a red line running through the middle. Across the top were all the different price points, and to the left were the weight markings in pounds and ounces.\n\nIt wasn't rocket science, but for a kid just starting out, it was a little intimidating—especially when you had to price something that cost more than the scale would calculate.\n\nThe trick was to weigh it, find the price for half, and then double it in your head.\n\nYou also had to learn to tell the difference between the fruits and vegetables, and more importantly, memorize the price per pound for each one.\n\nDen-Den drilled me hard on that scale. At first, I thought he was being generous—making sure I got the hang of things. Later I realized he just wanted to make sure I could handle the scale so he could disappear for most of the night. Like I said, Den-Den wasn't exactly management material.`
@@ -1301,7 +1065,7 @@ function bookCard(book) {
     var badge = book.bestseller ? '<div class="bestseller-badge">\u2605 Bestseller</div>' : '';
     return '<div class="book-card-wrap">' + badge +
         '<div class="book-card" style="cursor:pointer;" onclick="openBookModal(' + idx + ')">' +
-        '<div class="book-cover" style="height:280px;background-image:url(\'' + book.cover + '\');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--cream);" title="' + book.title + '"></div>' +
+        '<img class="book-cover" src="' + book.cover + '" alt="' + book.title + '" loading="lazy" style="aspect-ratio:2/3;">' +
         '<div class="book-info" style="padding:8px;">' +
         '<h3 class="book-title" style="font-size:14px;margin-bottom:2px;">' + book.title + '</h3>' +
         '<div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">' + book.genre + '</div>' +
@@ -1334,9 +1098,6 @@ function openBookModal(idx) {
     }
     document.getElementById('book-modal-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
-    // Tell parent iframe to scroll to top so modal is visible
-    try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
-    window.scrollTo(0, 0);
 }
 function openSampleReader() {
     if (!currentSample) return;
@@ -1347,8 +1108,6 @@ function openSampleReader() {
     document.getElementById('sample-buy-btn').href = currentSample.url;
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
-    window.scrollTo(0, 0);
 }
 function closeSampleReader() {
     document.getElementById('sample-overlay').classList.remove('active');
@@ -1363,12 +1122,7 @@ function closeBookModal(event) {
 
 function renderBooks() {
     var sorted = books.slice().sort(function(a,b) { return (b.bestseller?1:0) - (a.bestseller?1:0); });
-    var sortedBooks = books.slice().sort(function(a, b) {
-        if (a.bestseller && !b.bestseller) return -1;
-        if (!a.bestseller && b.bestseller) return 1;
-        return 0;
-    });
-    document.getElementById('all-books-grid').innerHTML = sortedBooks.map(bookCard).join('');
+    document.getElementById('all-books-grid').innerHTML = books.map(bookCard).join('');
 }
 
 function filterBooks(query) {
@@ -1381,41 +1135,60 @@ function filterBooks(query) {
     document.getElementById('all-books-grid').innerHTML = filtered.map(bookCard).join('');
 }
 
-function toggleMobileMenu() {
-    var btn = document.getElementById('nav-hamburger');
-    var menu = document.getElementById('mobile-menu');
-    btn.classList.toggle('open');
-    menu.classList.toggle('open');
-}
-function closeMobileMenu() {
-    document.getElementById('nav-hamburger').classList.remove('open');
-    document.getElementById('mobile-menu').classList.remove('open');
-}
-function showPageMobile(page) {
-    showPage(page);
-    closeMobileMenu();
-}
-
 function showPage(page) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     document.getElementById('page-' + page).classList.add('active');
-    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function(a) { a.classList.remove('active'); });
+    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     var navLink = document.getElementById('nav-' + page);
     if (navLink) navLink.classList.add('active');
-    var mnavLink = document.getElementById('mnav-' + page);
-    if (mnavLink) mnavLink.classList.add('active');
     window.scrollTo(0, 0);
-    // Tell parent iframe to scroll to top too
-    try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
 }
 
 renderBooks();
 </script>
 
 <script>
-// v8: No auto-resize needed — loader uses fullscreen iframe that scrolls internally
-// The iframe fills the viewport (position:fixed; height:100vh) and scrolls on its own,
-// so position:fixed modals work correctly within the iframe's viewport.
+// Auto-resize iframe to fit content so books page isn't clipped
+(function() {
+  function resizeFrame() {
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, 2400);
+    // Try direct resize (works if same-origin)
+    try {
+      if (window.frameElement) {
+        window.frameElement.style.height = h + 'px';
+        window.frameElement.height = h;
+        window.frameElement.setAttribute('height', h);
+      }
+    } catch(e) {}
+    // Try postMessage (works if parent listens)
+    try {
+      window.parent.postMessage({ type: 'resize', height: h, source: 'words-and-wheels' }, '*');
+    } catch(e) {}
+  }
+  // Run on load, on page changes, and on resize
+  window.addEventListener('load', resizeFrame);
+  window.addEventListener('resize', resizeFrame);
+  // Also run whenever showPage is called
+  var origShowPage = window.showPage;
+  if (origShowPage) {
+    window.showPage = function(page) {
+      origShowPage(page);
+      setTimeout(resizeFrame, 50);
+      setTimeout(resizeFrame, 300);
+    };
+  }
+  // Run periodically for the first few seconds
+  setTimeout(resizeFrame, 100);
+  setTimeout(resizeFrame, 500);
+  setTimeout(resizeFrame, 1500);
+  setTimeout(resizeFrame, 3000);
+  // Observe DOM changes
+  if (typeof MutationObserver !== 'undefined') {
+    var obs = new MutationObserver(function() { resizeFrame(); });
+    obs.observe(document.body, { childList: true, subtree: true, attributes: true });
+    setTimeout(function() { obs.disconnect(); }, 10000);
+  }
+})();
 </script>
 
 
@@ -1700,7 +1473,7 @@ document.addEventListener('keydown', function(e) {
     text-indent: 2em;
 }
 .sample-close {
-    position: fixed;
+    position: absolute;
     top: 16px; right: 20px;
     background: none;
     border: none;
