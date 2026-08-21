@@ -1,4 +1,4 @@
-<!-- WORDS & WHEELS — Auto-Loader v8.2 -->
+<!-- WORDS & WHEELS — Auto-Loader v9.0 -->
 <!-- Paste this into Payhip's Custom Code area. -->
 <div id="waw-loader">
   <div style="text-align:center;padding:60px 20px;font-family:Arial,sans-serif;color:#1a2a4a;">
@@ -7,52 +7,70 @@
   </div>
 </div>
 
+<style id="waw-hide-chrome">
+/* HIDE ALL PAYHIP CHROME — only our iframe shows */
+header, nav, footer,
+[class*="header"], [class*="Header"],
+[class*="nav-"], [class*="navbar"], [class*="navigation"],
+[class*="menu"], [class*="Menu"], [class*="burger"], [class*="hamburger"], [class*="Hamburger"],
+[class*="footer"], [class*="Footer"],
+[class*="powered"], [class*="Powered"],
+[class*="cart"], [class*="Cart"],
+[class*="search"], [class*="Search"],
+[class*="login"], [class*="Login"],
+[class*="mobile-menu"], [class*="mobileMenu"],
+[class*="menu-toggle"], [class*="menuToggle"], [class*="nav-toggle"], [class*="navToggle"],
+[class*="more-btn"], [class*="moreBtn"],
+[class*="store-header"], [class*="storeHeader"],
+[class*="top-bar"], [class*="topBar"],
+[class*="site-header"], [class*="siteHeader"] {
+  display: none !important;
+}
+
+/* Hide the entire body content, then re-show only our iframe */
+body > *:not(#waw-frame):not(#waw-style-reset):not(#waw-hide-chrome) {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Make our iframe fill the page */
+#waw-frame {
+  display: block !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  min-height: 100vh !important;
+  border: 0 !important;
+  z-index: 2147483647 !important;
+  background: #fff !important;
+}
+</style>
+
 <script>
 (function() {
-  function hideChrome() {
-    // Hide Payhip's headers, navs, footers
-    document.querySelectorAll('header, nav').forEach(function(el) {
-      if (el.id !== 'waw-frame' && !el.contains(document.getElementById('waw-frame'))) {
-        el.style.display = 'none';
-      }
-    });
-    document.querySelectorAll('footer, .footer, [class*="footer"], [class*="powered"]').forEach(function(el) {
-      if (el.id !== 'waw-frame' && !el.querySelector('#waw-frame')) {
-        el.style.display = 'none';
-      }
-    });
-    // Hide Payhip's hamburger / mobile menu toggle buttons
-    document.querySelectorAll('[class*="hamburger"], [class*="menu-toggle"], [class*="menu-btn"], [class*="burger"], [class*="mobile-nav"], [class*="nav-toggle"], [aria-label*="menu" i], [aria-label*="Menu"], button[data-toggle], .navbar-toggle').forEach(function(el) {
-      if (el.id !== 'waw-frame' && !el.contains(document.getElementById('waw-frame'))) {
-        el.style.display = 'none';
-      }
-    });
-    // Hide stray Payhip nav link text that sometimes lingers
-    document.querySelectorAll('a').forEach(function(a) {
-      var t = (a.textContent || '').trim();
-      if (t === 'SHOP' || t === 'Shop' || t === 'PLAY GAMES' || t === 'PHRASEBOOKS' || t === 'CONTACT' || t === 'Contact') {
-        // Only hide if it's not inside our iframe
-        if (!a.closest('#waw-frame')) {
-          a.style.display = 'none';
-        }
-      }
-    });
+  // ===== STEP 1: Inject CSS to nuke all Payhip chrome =====
+  var style = document.getElementById('waw-hide-chrome');
+  if (!style) {
+    style = document.createElement('style');
+    style.id = 'waw-hide-chrome';
+    style.textContent = 'header,nav,footer,[class*="header"],[class*="Header"],[class*="nav-"],[class*="navbar"],[class*="navigation"],[class*="menu"],[class*="Menu"],[class*="burger"],[class*="hamburger"],[class*="Hamburger"],[class*="footer"],[class*="Footer"],[class*="powered"],[class*="Powered"],[class*="cart"],[class*="Cart"],[class*="search"],[class*="Search"],[class*="login"],[class*="Login"],[class*="mobile-menu"],[class*="mobileMenu"],[class*="menu-toggle"],[class*="menuToggle"],[class*="nav-toggle"],[class*="navToggle"],[class*="more-btn"],[class*="moreBtn"],[class*="store-header"],[class*="storeHeader"],[class*="top-bar"],[class*="topBar"],[class*="site-header"],[class*="siteHeader"]{display:none!important}body>*:not(#waw-frame):not(#waw-hide-chrome){display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}#waw-frame{display:block!important;position:fixed!important;top:0!important;left:0!important;width:100%!important;min-height:100vh!important;border:0!important;z-index:2147483647!important;background:#fff!important}';
+    document.head.appendChild(style);
   }
-  hideChrome();
-  setTimeout(hideChrome, 500);
-  setTimeout(hideChrome, 1500);
-  setTimeout(hideChrome, 3000);
 
+  // ===== STEP 2: Create the iframe =====
   var container = document.getElementById('waw-loader');
   var frame = document.createElement('iframe');
   frame.src = 'https://resuter51-ops.github.io/spark-storefront/';
-  frame.style.cssText = 'width:100%;border:0;display:block;min-height:100vh;background:#fff;position:relative;z-index:1;';
-  frame.setAttribute('scrolling', 'no');
   frame.setAttribute('id', 'waw-frame');
+  frame.setAttribute('scrolling', 'yes');
+  frame.setAttribute('title', 'Words and Wheels');
   
   frame.addEventListener('load', function() {
     container.style.display = 'none';
-    hideChrome();
+    forceHideChrome();
     function resize() {
       try {
         var h = frame.contentWindow.document.body.scrollHeight;
@@ -72,6 +90,33 @@
   });
   
   container.parentNode.replaceChild(frame, container);
-  hideChrome();
+
+  // ===== STEP 3: Aggressively hide all Payhip elements =====
+  function forceHideChrome() {
+    document.body.querySelectorAll(':scope > *').forEach(function(el) {
+      if (el.id === 'waw-frame' || el.id === 'waw-hide-chrome') return;
+      if (el.tagName === 'SCRIPT') return;
+      el.style.setProperty('display', 'none', 'important');
+    });
+  }
+
+  forceHideChrome();
+  setTimeout(forceHideChrome, 100);
+  setTimeout(forceHideChrome, 500);
+  setTimeout(forceHideChrome, 1500);
+  setTimeout(forceHideChrome, 3000);
+
+  // Watch for DOM changes
+  var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(m) {
+      m.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1 && node.id !== 'waw-frame' && node.id !== 'waw-hide-chrome') {
+          if (node.tagName === 'SCRIPT') return;
+          node.style.setProperty('display', 'none', 'important');
+        }
+      });
+    });
+  });
+  observer.observe(document.body, { childList: true, subtree: false });
 })();
 </script>
