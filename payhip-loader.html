@@ -1,4 +1,4 @@
-<!-- WORDS & WHEELS — Auto-Loader v9.0 -->
+<!-- WORDS & WHEELS — Auto-Loader v9.1 -->
 <!-- Paste this into Payhip's Custom Code area. -->
 <div id="waw-loader">
   <div style="text-align:center;padding:60px 20px;font-family:Arial,sans-serif;color:#1a2a4a;">
@@ -8,34 +8,23 @@
 </div>
 
 <style id="waw-hide-chrome">
-/* HIDE ALL PAYHIP CHROME — only our iframe shows */
+/* HIDE ALL PAYHIP CHROME — targeted selectors */
 header, nav, footer,
 [class*="header"], [class*="Header"],
-[class*="nav-"], [class*="navbar"], [class*="navigation"],
-[class*="menu"], [class*="Menu"], [class*="burger"], [class*="hamburger"], [class*="Hamburger"],
-[class*="footer"], [class*="Footer"],
-[class*="powered"], [class*="Powered"],
-[class*="cart"], [class*="Cart"],
-[class*="search"], [class*="Search"],
-[class*="login"], [class*="Login"],
-[class*="mobile-menu"], [class*="mobileMenu"],
+[class*="navbar"], [class*="navigation"], [class*="Navigation"],
 [class*="menu-toggle"], [class*="menuToggle"], [class*="nav-toggle"], [class*="navToggle"],
-[class*="more-btn"], [class*="moreBtn"],
+[class*="burger"], [class*="hamburger"], [class*="Hamburger"],
+[class*="more-btn"], [class*="moreBtn"], [class*="more-menu"], [class*="moreMenu"],
+[class*="powered"], [class*="Powered"],
 [class*="store-header"], [class*="storeHeader"],
+[class*="site-header"], [class*="siteHeader"],
 [class*="top-bar"], [class*="topBar"],
-[class*="site-header"], [class*="siteHeader"] {
+[class*="mobile-nav"], [class*="mobileNav"],
+[class*="mobile-menu"], [class*="mobileMenu"] {
   display: none !important;
 }
 
-/* Hide the entire body content, then re-show only our iframe */
-body > *:not(#waw-frame):not(#waw-style-reset):not(#waw-hide-chrome) {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Make our iframe fill the page */
+/* Make our iframe cover the entire page */
 #waw-frame {
   display: block !important;
   position: fixed !important;
@@ -51,14 +40,9 @@ body > *:not(#waw-frame):not(#waw-style-reset):not(#waw-hide-chrome) {
 
 <script>
 (function() {
-  // ===== STEP 1: Inject CSS to nuke all Payhip chrome =====
-  var style = document.getElementById('waw-hide-chrome');
-  if (!style) {
-    style = document.createElement('style');
-    style.id = 'waw-hide-chrome';
-    style.textContent = 'header,nav,footer,[class*="header"],[class*="Header"],[class*="nav-"],[class*="navbar"],[class*="navigation"],[class*="menu"],[class*="Menu"],[class*="burger"],[class*="hamburger"],[class*="Hamburger"],[class*="footer"],[class*="Footer"],[class*="powered"],[class*="Powered"],[class*="cart"],[class*="Cart"],[class*="search"],[class*="Search"],[class*="login"],[class*="Login"],[class*="mobile-menu"],[class*="mobileMenu"],[class*="menu-toggle"],[class*="menuToggle"],[class*="nav-toggle"],[class*="navToggle"],[class*="more-btn"],[class*="moreBtn"],[class*="store-header"],[class*="storeHeader"],[class*="top-bar"],[class*="topBar"],[class*="site-header"],[class*="siteHeader"]{display:none!important}body>*:not(#waw-frame):not(#waw-hide-chrome){display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}#waw-frame{display:block!important;position:fixed!important;top:0!important;left:0!important;width:100%!important;min-height:100vh!important;border:0!important;z-index:2147483647!important;background:#fff!important}';
-    document.head.appendChild(style);
-  }
+  // ===== STEP 1: Inject CSS =====
+  var style = document.getElementById('waw-hide-chrome') || document.createElement('style');
+  style.id = 'waw-hide-chrome';
 
   // ===== STEP 2: Create the iframe =====
   var container = document.getElementById('waw-loader');
@@ -89,14 +73,60 @@ body > *:not(#waw-frame):not(#waw-style-reset):not(#waw-hide-chrome) {
     });
   });
   
+  // Move iframe to be a direct child of body so CSS targeting works
   container.parentNode.replaceChild(frame, container);
+  // Ensure it's on body
+  if (frame.parentNode !== document.body) {
+    document.body.appendChild(frame);
+  }
 
-  // ===== STEP 3: Aggressively hide all Payhip elements =====
+  // ===== STEP 3: Hide Payhip chrome elements =====
   function forceHideChrome() {
-    document.body.querySelectorAll(':scope > *').forEach(function(el) {
-      if (el.id === 'waw-frame' || el.id === 'waw-hide-chrome') return;
-      if (el.tagName === 'SCRIPT') return;
-      el.style.setProperty('display', 'none', 'important');
+    // Hide headers, navs, footers, and Payhip-specific elements
+    var selectors = [
+      'header', 'nav', 'footer',
+      '[class*="header"]', '[class*="Header"]',
+      '[class*="navbar"]', '[class*="navigation"]', '[class*="Navigation"]',
+      '[class*="menu-toggle"]', '[class*="menuToggle"]',
+      '[class*="nav-toggle"]', '[class*="navToggle"]',
+      '[class*="burger"]', '[class*="hamburger"]', '[class*="Hamburger"]',
+      '[class*="more-btn"]', '[class*="moreBtn"]',
+      '[class*="powered"]', '[class*="Powered"]',
+      '[class*="store-header"]', '[class*="storeHeader"]',
+      '[class*="site-header"]', '[class*="siteHeader"]',
+      '[class*="top-bar"]', '[class*="topBar"]',
+      '[class*="mobile-nav"]', '[class*="mobileNav"]',
+      '[class*="mobile-menu"]', '[class*="mobileMenu"]',
+      '[class*="search-bar"]', '[class*="searchBar"]',
+      '[class*="cart-btn"]', '[class*="cartBtn"]',
+      '[class*="login-btn"]', '[class*="loginBtn"]',
+      '[role="banner"]', '[role="navigation"]'
+    ];
+    
+    selectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(el) {
+        // Don't hide our iframe or anything inside it
+        if (el.id === 'waw-frame' || el.closest('#waw-frame')) return;
+        el.style.setProperty('display', 'none', 'important');
+      });
+    });
+
+    // Hide stray Payhip nav links by text content
+    document.querySelectorAll('a, button').forEach(function(el) {
+      if (el.closest('#waw-frame')) return;
+      var t = (el.textContent || '').trim();
+      if (['Shop', 'SHOP', 'Contact', 'CONTACT', 'PLAY GAMES', 'PHRASEBOOKS', 'HOME', 'Home', 'More', 'MORE', 'Login', 'LOGIN', 'Cart', 'CART'].indexOf(t) !== -1) {
+        el.style.setProperty('display', 'none', 'important');
+      }
+    });
+
+    // Hide "Powered by Payhip" text
+    document.querySelectorAll('div, span, p, a').forEach(function(el) {
+      if (el.closest('#waw-frame')) return;
+      var t = (el.textContent || '').trim();
+      if (t === 'Powered by Payhip' || t === 'Powered by Payhip.') {
+        el.style.setProperty('display', 'none', 'important');
+      }
     });
   }
 
@@ -106,17 +136,10 @@ body > *:not(#waw-frame):not(#waw-style-reset):not(#waw-hide-chrome) {
   setTimeout(forceHideChrome, 1500);
   setTimeout(forceHideChrome, 3000);
 
-  // Watch for DOM changes
+  // Watch for DOM changes — hide new Payhip elements
   var observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(m) {
-      m.addedNodes.forEach(function(node) {
-        if (node.nodeType === 1 && node.id !== 'waw-frame' && node.id !== 'waw-hide-chrome') {
-          if (node.tagName === 'SCRIPT') return;
-          node.style.setProperty('display', 'none', 'important');
-        }
-      });
-    });
+    forceHideChrome();
   });
-  observer.observe(document.body, { childList: true, subtree: false });
+  observer.observe(document.body, { childList: true, subtree: true });
 })();
 </script>
