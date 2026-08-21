@@ -208,7 +208,7 @@
         /* BOOK GRID */
         .book-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 28px;
         }
         .book-card-wrap { position: relative; }
@@ -227,7 +227,7 @@
         }
         .book-cover {
             width: 100%;
-            height: 240px;
+            aspect-ratio: 2/3;
             object-fit: cover;
             background: var(--cream);
             display: block;
@@ -443,7 +443,7 @@
             .nav-links { gap: 7px; flex-wrap: wrap; justify-content: center; }
             .nav-links a { font-size: 11px; white-space: nowrap; padding: 2px 4px; }
             .about-grid { grid-template-columns: 1fr; gap: 32px; }
-            .book-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+            /* grid handled by !important rule above */
             .about-cards { grid-template-columns: 1fr; }
             .book-scene-strip { height: 120px; }
             .book-scene-strip .strip-text { padding-top: 40px; font-size: 15px; }
@@ -1109,7 +1109,7 @@ function bookCard(book) {
     var badge = book.bestseller ? '<div class="bestseller-badge">\u2605 Bestseller</div>' : '';
     return '<div class="book-card-wrap">' + badge +
         '<div class="book-card" style="cursor:pointer;" onclick="openBookModal(' + idx + ')">' +
-        '<div class="book-cover" style="height:280px;background-image:url(\'' + book.cover + '\');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--cream);" title="' + book.title + '"></div>' +
+        '<div class="book-cover" style="aspect-ratio:2/3;background-image:url(\'' + book.cover + '\');background-size:contain;background-position:center;background-repeat:no-repeat;background-color:var(--cream);" title="' + book.title + '"></div>' +
         '<div class="book-info" style="padding:8px;">' +
         '<h3 class="book-title" style="font-size:14px;margin-bottom:2px;">' + book.title + '</h3>' +
         '<div style="font-size:11px;color:var(--gold);margin-bottom:6px;font-family:Arial,sans-serif;text-transform:uppercase;letter-spacing:1px;">' + book.genre + '</div>' +
