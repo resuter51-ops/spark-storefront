@@ -15,11 +15,9 @@ button:hover { background: #2a3a5a; }
 </head>
 <body>
 <h1>📋 Payhip Custom Code — Click to Copy</h1>
-<p class="note">Click the button below to copy all the code, then paste it into Payhip's Custom Code area.</p>
+<p class="note">v8.3 — fixes stray "HOME" text and comment leak. Click copy, then paste into Payhip Custom Code area.</p>
 <button onclick="copyCode()">📋 Copy All Code</button>
-<textarea id="codebox" readonly>!-- WORDS & WHEELS — Auto-Loader v8.2 --
-<!-- Paste this into Payhip's Custom Code area. -->
-<div id="waw-loader">
+<textarea id="codebox" readonly><div id="waw-loader">
   <div style="text-align:center;padding:60px 20px;font-family:Arial,sans-serif;color:#1a2a4a;">
     <h2 style="font-size:22px;margin-bottom:8px;">Words and Wheels</h2>
     <p style="color:#888;font-size:14px;">Loading…</p>
@@ -44,12 +42,11 @@ button:hover { background: #2a3a5a; }
         el.style.display = 'none';
       }
     });
-    document.querySelectorAll('a').forEach(function(a) {
-      var t = (a.textContent || '').trim();
-      if (t === 'SHOP' || t === 'Shop' || t === 'PLAY GAMES' || t === 'PHRASEBOOKS' || t === 'CONTACT' || t === 'Contact') {
-        if (!a.closest('#waw-frame')) {
-          a.style.display = 'none';
-        }
+    document.querySelectorAll('a, button, span, div').forEach(function(el) {
+      if (el.closest && el.closest('#waw-frame')) return;
+      var t = (el.textContent || '').trim();
+      if (t === 'SHOP' || t === 'Shop' || t === 'PLAY GAMES' || t === 'PHRASEBOOKS' || t === 'CONTACT' || t === 'Contact' || t === 'HOME' || t === 'Home' || t === 'More' || t === 'MORE' || t === 'Login' || t === 'LOGIN' || t === 'Cart' || t === 'CART' || t === 'Powered by Payhip' || t === 'Powered by Payhip.') {
+        el.style.setProperty('display','none','important');
       }
     });
   }
