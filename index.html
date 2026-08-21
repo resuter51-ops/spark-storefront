@@ -434,129 +434,14 @@
         }
         .search-bar input:focus { border-color: var(--gold); }
         .search-bar input::placeholder { color: #999; }
-        .section-nav {
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid #e0ddd5;
-            margin-top: 20px;
-        }
-        .section-nav-label {
-            font-size: 14px;
-            color: var(--light-text);
-            font-family: Arial, sans-serif;
-            margin-bottom: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 600;
-        }
-        .section-nav-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-        .section-nav-buttons a, .section-nav-buttons button {
-            display: inline-block;
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            text-decoration: none;
-            border: 2px solid var(--gold);
-        }
-        .section-nav-buttons a:hover, .section-nav-buttons button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        .section-nav-buttons .nav-primary {
-            background: var(--gold);
-            color: var(--dark);
-        }
-        .section-nav-buttons .nav-primary:hover {
-            background: #c49b3f;
-        }
-        .section-nav-buttons .nav-secondary {
-            background: transparent;
-            color: var(--navy);
-            border-color: var(--navy);
-        }
-        .section-nav-buttons .nav-secondary:hover {
-            background: rgba(26,42,74,0.08);
-        }
-
-        /* HAMBURGER MENU */
-        .nav-hamburger {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-            margin-left: auto;
-            z-index: 1001;
-        }
-        .nav-hamburger span {
-            display: block;
-            width: 24px;
-            height: 3px;
-            background: var(--gold);
-            border-radius: 2px;
-            transition: 0.3s;
-        }
-        .nav-hamburger span + span { margin-top: 5px; }
-        .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .nav-hamburger.open span:nth-child(2) { opacity: 0; }
-        .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background: rgba(26,42,74,0.98);
-            backdrop-filter: blur(12px);
-            z-index: 999;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(212,168,73,0.3);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-        }
-        .mobile-menu ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .mobile-menu li {
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .mobile-menu li:last-child { border-bottom: none; }
-        .mobile-menu a {
-            display: block;
-            padding: 14px 24px;
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s, color 0.2s;
-        }
-        .mobile-menu a:hover, .mobile-menu a.active {
-            color: var(--gold);
-            background: rgba(212,168,73,0.1);
-        }
-
         /* RESPONSIVE */
-        @media (max-width: 860px) {
+        @media (max-width: 768px) {
             .book-grid { grid-template-columns: repeat(2, 1fr) !important; }
             .hero h1 { font-size: 34px; }
             .hero { min-height: 420px; }
-            .nav-logo { font-size: 16px; letter-spacing: 0.5px; }
-            .nav-hamburger { display: block; }
-            .nav-links { display: none; }
-            .mobile-menu.open { display: block; }
+            .nav-logo { font-size: 15px; letter-spacing: 0.5px; }
+            .nav-links { gap: 7px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 11px; white-space: nowrap; padding: 2px 4px; }
             .about-grid { grid-template-columns: 1fr; gap: 32px; }
             .book-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
             .about-cards { grid-template-columns: 1fr; }
@@ -567,6 +452,8 @@
         }
         @media (max-width: 480px) {
             .nav-logo { font-size: 13px; }
+            .nav-links { gap: 4px; flex-wrap: wrap; }
+            .nav-links a { font-size: 10px; padding: 2px 3px; }
             .hero h1 { font-size: 28px; }
             .hero-btn { font-size: 13px; padding: 10px 22px; }
         }
@@ -590,7 +477,6 @@
             width: 100%;
             max-height: 600px;
             overflow-y: auto;
-            overflow-x: hidden;
             display: flex;
             position: relative;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
@@ -665,7 +551,7 @@
         }
         .book-modal-buy:hover { background: var(--dark); }
         .book-modal-close {
-            position: absolute;
+            position: fixed;
             top: 10px; right: 14px;
             background: rgba(0,0,0,0.1);
             border: none;
@@ -744,30 +630,9 @@
             <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" id="nav-arcade">Arcade</a></li>
             <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" id="nav-jukebox">Jukebox</a></li>
             <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" id="nav-phrasebooks">Phrasebooks</a></li>
-            <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
         </ul>
-        <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
     </div>
 </nav>
-<!-- MOBILE DROPDOWN MENU -->
-<div class="mobile-menu" id="mobile-menu">
-    <ul>
-        <li><a onclick="showPageMobile('home')" id="mnav-home">Home</a></li>
-        <li><a onclick="showPageMobile('books')" id="mnav-books">Books</a></li>
-        <li><a onclick="showPageMobile('comics')" id="mnav-comics">Comics</a></li>
-        <li><a onclick="showPageMobile('about')" id="mnav-about">About</a></li>
-        <li><a onclick="showPageMobile('author')" id="mnav-author">Author</a></li>
-        <li><a onclick="showPageMobile('thoughts')" id="mnav-thoughts">Thoughts</a></li>
-        <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank" onclick="closeMobileMenu()">Arcade</a></li>
-        <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" onclick="closeMobileMenu()">Jukebox</a></li>
-        <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" onclick="closeMobileMenu()">Phrasebooks</a></li>
-        <li><a onclick="showPageMobile('contact')" id="mnav-contact">Contact</a></li>
-    </ul>
-</div>
 
 <!-- HOME PAGE -->
 <div class="page active" id="page-home">
@@ -796,24 +661,10 @@
 <div class="page" id="page-books">
     <div class="section" style="padding-top:20px;">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
-            <h2 class="section-title" style="text-align:left;font-size:22px;">All Books</h2>
+            <h2 style="font-size:22px;color:var(--navy);font-weight:normal;">All Books</h2>
             <input type="text" id="search-input" placeholder="Search..." oninput="filterBooks(this.value)" style="background:white;border:2px solid rgba(26,42,74,0.12);border-radius:50px;padding:8px 18px;font-size:13px;width:200px;font-family:Arial,sans-serif;outline:none;">
         </div>
         <div class="book-grid" id="all-books-grid" style="gap:12px;"></div>
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-                <button class="nav-secondary" onclick="showPage('contact')">Contact</button>
-            </div>
-        </div>
     </div>
 </div>
 
@@ -821,9 +672,8 @@
 <!-- SALVAGER COMICS PAGE -->
 <div class="page" id="page-comics">
     <div class="comics-page">
-        <div class="section-header" style="margin-bottom:24px;">
-            <span class="section-label">Graphic Stories</span>
-            <h2 class="section-title">The Salvager Comics</h2>
+        <div class="comics-header">
+            <h2>The Salvager Comics</h2>
             <p>New adventures of Zeke Carter &mdash; ex-cop, reluctant savior, and the man who stands next to doors. Original comic strips set in the world of The Salvager series.</p>
         </div>
 
@@ -861,46 +711,11 @@
             </div>
         </div>
 
-
-        <div class="comics-intro">
-            <h3>Episode 10: "The Plate"</h3>
-            <p>A rainy night. A hungry kid. A plate of food sliding across a counter. Sometimes salvation is that simple.</p>
+        <div class="comics-nav">
+            <button onclick="showPage('books')">Browse Books</button>
+            <span class="strip-counter">Strip 1 of 1</span>
+            <button onclick="showPage('home')">Home</button>
         </div>
-
-        <div class="comics-strip">
-            <div class="comics-strip-title">
-                <span>THE SALVAGER &mdash; "The Plate"</span>
-                <span>Episode 10</span>
-            </div>
-            <div class="comics-grid">
-                <!-- Panel 1: Wide establishing shot -->
-                <div class="comics-panel comics-panel-wide">
-                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/5b358b607_generated_image.png" alt="Panel 1">
-                    <div class="comic-bubble tail-bottom" style="top: 15px; left: 20px;">Quiet night. Rain on the windows. Just me and Karen.</div>
-                </div>
-                <!-- Panel 2: Teenager enters -->
-                <div class="comics-panel">
-                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/55d168646_generated_image.png" alt="Panel 2">
-                    <div class="comic-bubble tail-bottom" style="top: 10px; left: 10px; max-width: 70%;">A kid stepped in. Wet. Hungry. Trying not to show it.</div>
-                </div>
-                <!-- Panel 3: Sliding the plate -->
-                <div class="comics-panel">
-                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/1f9ed7cf4_generated_image.png" alt="Panel 3">
-                    <div class="comic-bubble tail-bottom" style="bottom: 10px; left: 10px; max-width: 75%;">Didn't say a word. Just pushed my plate across the counter.</div>
-                </div>
-                <!-- Panel 4: Teenager speaks -->
-                <div class="comics-panel comics-panel-wide">
-                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/838087704_generated_image.png" alt="Panel 4">
-                    <div class="comic-bubble tail-left" style="bottom: 30px; left: 55%;">How did you know?</div>
-                </div>
-                <!-- Panel 5: Zeke's reply -->
-                <div class="comics-panel comics-panel-wide">
-                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/5b0eb2058_generated_image.png" alt="Panel 5">
-                    <div class="comic-bubble tail-right" style="bottom: 40px; right: 50%;">When you get older, you'll know.</div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 
@@ -910,7 +725,7 @@
         <div class="section">
             <div class="section-header">
                 <span class="section-label">Our Story</span>
-                <h2 class="section-title">Words and Wheels — About</h2>
+                <h2 class="section-title">Words and Wheels \u2014 About</h2>
                 <p class="section-subtitle">A creative publishing and entertainment hub &mdash; books, games, music, comics, and more.</p>
             </div>
             <div style="max-width:700px;margin:0 auto;">
@@ -928,20 +743,9 @@
                     <p>Free arcade games, a jukebox with 23 original tracks, comic strips, and Bob's Thoughts blog &mdash; all in one place.</p>
                 </div>
             </div>
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-                <button class="nav-secondary" onclick="showPage('contact')">Contact</button>
+            <div class="cta-section">
+                <button class="hero-btn" onclick="showPage('books')">Browse the Collection</button>
             </div>
-        </div>
         </div>
     </div>
 </div>
@@ -951,7 +755,7 @@
     <div class="author-section">
         <div class="section-header" style="margin-bottom:40px;">
             <span class="section-label">Meet the Author</span>
-            <h2 class="section-title">Words and Wheels — Robert Suter</h2>
+            <h2 class="section-title">Words and Wheels \u2014 Robert Suter</h2>
         </div>
         <div class="author-content">
             <p>Robert Suter is a wheelchair user, author, publisher, songwriter, and creator living in Toms River, New Jersey. He writes with determination and imagination under the pen names Jack Baptiste and R. E. Suter, proving that stories don't retire.</p>
@@ -959,38 +763,12 @@
             <p>From the gripping thriller world of The Salvager series to the warmth of Happiness Finds Big Man and the nostalgic charm of Just Another Typical Day in Valley Fair, every book in the catalog reflects a commitment to storytelling that earns its place in your hands.</p>
             <p>All books are available as instant digital downloads &mdash; no shipping, no waiting. Just great reading, delivered to your device the moment you're ready.</p>
         </div>
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-                <button class="nav-secondary" onclick="showPage('contact')">Contact</button>
-            </div>
+        <div class="cta-section">
+            <button class="hero-btn" onclick="showPage('books')">Browse the Books</button>
         </div>
     </div>
 </div>
 
-
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-                <button class="nav-secondary" onclick="showPage('contact')">Contact</button>
-            </div>
-        </div>
 
 <!-- BOB'S THOUGHTS / BLOG PAGE -->
 <div class="page" id="page-thoughts">
@@ -1000,23 +778,10 @@
     </div>
 
     <div style="max-width:800px;margin:0 auto;padding:40px 20px;">
-        <!-- Blog post 1: The Great Breakfast Negotiations (newest) -->
-        <a href="https://wordsandwheels.net/blog/bob-s-thoughts/the-great-breakfast-negotiations" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:24px;border:1px solid #e0ddd5;border-radius:14px;overflow:hidden;transition:box-shadow 0.3s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+        <!-- Blog post card -->
+        <a href="https://wordsandwheels.net/blog/bob-s-thoughts" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:30px;border:1px solid #e0ddd5;border-radius:14px;overflow:hidden;transition:box-shadow 0.3s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
             <div style="display:flex;flex-direction:column;">
-                <img src="https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jv4mmmfnkmf1ntjbglj151jmsc.png" alt="The Great Breakfast Negotiations" style="width:100%;height:220px;object-fit:cover;background:var(--cream);" onerror="this.style.display='none'">
-                <div style="padding:24px;">
-                    <div style="font-size:13px;color:#999;font-family:Arial,sans-serif;margin-bottom:8px;">August 03, 2026</div>
-                    <h2 style="font-size:22px;font-family:Georgia,serif;color:var(--dark);margin-bottom:10px;line-height:1.3;">The Great Breakfast Negotiations</h2>
-                    <p style="font-size:15px;color:var(--light-text);font-family:Arial,sans-serif;line-height:1.7;">Living in a nursing home teaches you many things. It teaches patience. It teaches flexibility. It teaches gratitude. It also teaches that ordering breakfast can become more complicated than negotiating an international peace treaty.</p>
-                    <div style="margin-top:14px;color:var(--gold);font-size:14px;font-family:Arial,sans-serif;font-weight:bold;">Read More &rarr;</div>
-                </div>
-            </div>
-        </a>
-
-        <!-- Blog post 2: Welcome to Wheels and Words -->
-        <a href="https://wordsandwheels.net/blog/bob-s-thoughts/welcome-to-wheels-and-words-life-looks-different-from-where-i-sit" target="_blank" style="display:block;text-decoration:none;color:inherit;margin-bottom:24px;border:1px solid #e0ddd5;border-radius:14px;overflow:hidden;transition:box-shadow 0.3s,transform 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.08)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
-            <div style="display:flex;flex-direction:column;">
-                <img src="https://payhip.com/cdn-cgi/image/format=auto,width=1500/https://pe56d.s3.amazonaws.com/o_1jugdmlo6t8op5r1fn3ks51fd4c.png" alt="Welcome to Wheels and Words" style="width:100%;height:220px;object-fit:cover;background:var(--cream);" onerror="this.style.display='none'">
+                <img src="https://images.unsplash.com/photo-1532012196779-4d4b8a8a3a3a?w=800&h=300&fit=crop" alt="Bob's Thoughts" style="width:100%;height:220px;object-fit:cover;background:var(--cream);" onerror="this.style.display='none'">
                 <div style="padding:24px;">
                     <div style="font-size:13px;color:#999;font-family:Arial,sans-serif;margin-bottom:8px;">July 26, 2026</div>
                     <h2 style="font-size:22px;font-family:Georgia,serif;color:var(--dark);margin-bottom:10px;line-height:1.3;">Welcome to Wheels and Words: Life Looks Different From Where I Sit</h2>
@@ -1026,23 +791,19 @@
             </div>
         </a>
 
-        <!-- More posts note -->
-        <div style="text-align:center;padding:20px;margin-top:10px;">
-            <p style="font-size:14px;color:#aaa;font-family:Arial,sans-serif;font-style:italic;">More posts coming soon. Check back for more from Bob!</p>
+        <!-- Coming soon note -->
+        <div style="text-align:center;padding:30px;border:1px dashed #ccc;border-radius:12px;margin-top:20px;">
+            <p style="font-size:15px;color:var(--light-text);font-family:Arial,sans-serif;">New posts coming soon. Check back for more from Bob!</p>
         </div>
 
-        <div class="section-nav">
-            <div class="section-nav-label">Explore More of Bob's World</div>
-            <div class="section-nav-buttons">
-                <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                <button class="nav-primary" onclick="showPage('books')">Books</button>
-                <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                <button class="nav-secondary" onclick="showPage('about')">About</button>
-                <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank">Phrasebooks</a>
-                <button class="nav-secondary" onclick="showPage('contact')">Contact</button>
+        <!-- Quick nav back to other sections -->
+        <div style="text-align:center;margin-top:50px;padding-top:30px;border-top:1px solid #e0ddd5;">
+            <p style="font-size:14px;color:var(--light-text);font-family:Arial,sans-serif;margin-bottom:16px;">Explore more of Bob's world:</p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
+                <button onclick="showPage('books')" style="padding:10px 24px;border:2px solid var(--gold);border-radius:8px;background:var(--gold);color:var(--dark);font-family:Arial,sans-serif;font-size:14px;font-weight:bold;cursor:pointer;">Bob's Books</button>
+                <button onclick="showPage('comics')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">Salvager Comics</button>
+                <button onclick="showPage('about')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">About</button>
+                <button onclick="showPage('author')" style="padding:10px 24px;border:2px solid var(--navy);border-radius:8px;background:transparent;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;cursor:pointer;">Author</button>
             </div>
         </div>
     </div>
@@ -1063,58 +824,6 @@
     </div>
     <p class="footer-credit">Words and Wheels &bull; The Creative World of Bob Suter &bull; &copy; 2026</p>
 </footer>
-
-
-<!-- CONTACT PAGE -->
-<div class="page" id="page-contact">
-    <div class="about-section">
-        <div class="section">
-            <div class="section-header">
-                <span class="section-label">Get In Touch</span>
-                <h2 class="section-title">Contact Us</h2>
-                <p class="section-subtitle">Questions about a book, a phrasebook, or just want to say hello? Drop us a line.</p>
-            </div>
-            <div style="max-width:600px;margin:0 auto;">
-                <div style="background:var(--card);border-radius:16px;padding:32px;border:1px solid var(--border);">
-                    <form id="contact-form" onsubmit="submitContact(event)">
-                        <div style="margin-bottom:20px;">
-                            <label for="contact-name" style="display:block;font-size:14px;font-weight:600;color:var(--light-text);margin-bottom:8px;">Your Name</label>
-                            <input type="text" id="contact-name" name="name" required style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:16px;background:var(--bg);color:var(--text);box-sizing:border-box;" placeholder="Jane Doe" />
-                        </div>
-                        <div style="margin-bottom:20px;">
-                            <label for="contact-email" style="display:block;font-size:14px;font-weight:600;color:var(--light-text);margin-bottom:8px;">Email Address</label>
-                            <input type="email" id="contact-email" name="email" required style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:16px;background:var(--bg);color:var(--text);box-sizing:border-box;" placeholder="jane@example.com" />
-                        </div>
-                        <div style="margin-bottom:24px;">
-                            <label for="contact-message" style="display:block;font-size:14px;font-weight:600;color:var(--light-text);margin-bottom:8px;">Message</label>
-                            <textarea id="contact-message" name="message" required rows="5" style="width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;font-size:16px;background:var(--bg);color:var(--text);box-sizing:border-box;resize:vertical;" placeholder="What is on your mind?"></textarea>
-                        </div>
-                        <button type="submit" id="contact-submit" style="width:100%;padding:14px;background:var(--gold);color:var(--dark);border:none;border-radius:8px;font-size:16px;font-weight:700;cursor:pointer;transition:opacity 0.2s;">Send Message</button>
-                    </form>
-                    <div id="contact-success" style="display:none;text-align:center;padding:24px;">
-                        <p style="font-size:18px;font-weight:600;color:var(--gold);margin-bottom:8px;">Message Sent!</p>
-                        <p style="color:var(--light-text);">Thank you for reaching out. Bob will get back to you soon.</p>
-                        <button onclick="showPage('home')" style="margin-top:20px;padding:10px 24px;background:var(--gold);color:var(--dark);border:none;border-radius:8px;font-weight:600;cursor:pointer;">Back to Home</button>
-                    </div>
-                    <div id="contact-error" style="display:none;text-align:center;padding:16px;color:#c62828;font-weight:600;"></div>
-                </div>
-            </div>
-            <div class="section-nav">
-                <div class="section-nav-label">Explore More of Bob's World</div>
-                <div class="section-nav-buttons">
-                    <button class="nav-secondary" onclick="showPage('home')">Home</button>
-                    <button class="nav-primary" onclick="showPage('books')">Books</button>
-                    <button class="nav-secondary" onclick="showPage('comics')">Comics</button>
-                    <button class="nav-secondary" onclick="showPage('about')">About</button>
-                    <button class="nav-secondary" onclick="showPage('author')">Author</button>
-                    <button class="nav-secondary" onclick="showPage('thoughts')">Thoughts</button>
-                    <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-book-arcade/" target="_blank">Arcade</a>
-                    <a class="nav-secondary" href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank">Jukebox</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
 
@@ -1185,7 +894,7 @@ Zeke carried his mug to the machine beside him. "Bad odds," he said.
         genre: "Fiction / Thriller",
         price: "$3.99",
         cover: "covers/book2-runaway-daughter.jpg",
-        description: "Seventeen-year-old Leah Whitfield is not missing — she's chosen. She's found her voice inside The Canvas, an art collective run by Seraphine Dax: magnetic, barefoot, dangerous.",
+        description: "Seventeen-year-old Leah Whitfield is not missing \u2014 she's chosen. She's found her voice inside The Canvas, an art collective run by Seraphine Dax: magnetic, barefoot, dangerous.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/cNnI5"
     ,
@@ -1388,7 +1097,7 @@ Somewhere unseen, something shifted.`
         genre: "Creative Nonfiction / Memoir",
         price: "$3.99",
         cover: "covers/book5-valley-fair.jpg",
-        description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center — a love letter to a vanished era of American life.",
+        description: "A warm and witty work of creative nonfiction set in the world of Valley Fair Super Discount Center \u2014 a love letter to a vanished era of American life.",
         bestseller: false,
         payhip_url: "https://wordsandwheels.net/b/JQZ8A",
         sample: `It was the summer of 1968 when I first walked into Valley Fair to apply for a job. I had my eye on the grocery department, but I wasn't picky—just needed work. Jimmy Barlow, the man doing the hiring, gave me a quick once-over and said they had an opening in produce. I told him I'd be happy to take it.\n\nThat very night, I started. My first introduction was to the produce manager, Elmo. He was a wiry guy with a gaunt face, always smelling faintly of cigarettes and cheap whiskey. Elmo had a reputation—drinking on the job, gambling on Fridays. Every week, there was a card game going on in the back office of the deli department, and it wasn't after hours either. It happened right in the middle of store time, while customers pushed carts down the aisles and kids begged for candy near the registers. It was just one of those things—unspoken, but well-known.\n\nNext up was Den-Den, the other part-time worker. He was the one breaking me in. Den-Den wasn't the hardest worker—he liked to take it easy—but he treated me fairly and showed me the ropes.\n\nThe very first thing Den-Den showed me was how to use the scale. It was a big piece of equipment, maybe two and a half feet long, with a flat metal plate to match—perfect for weighing bags of produce or loose vegetables. Above that was a long, lit display window with a red line running through the middle. Across the top were all the different price points, and to the left were the weight markings in pounds and ounces.\n\nIt wasn't rocket science, but for a kid just starting out, it was a little intimidating—especially when you had to price something that cost more than the scale would calculate.\n\nThe trick was to weigh it, find the price for half, and then double it in your head.\n\nYou also had to learn to tell the difference between the fruits and vegetables, and more importantly, memorize the price per pound for each one.\n\nDen-Den drilled me hard on that scale. At first, I thought he was being generous—making sure I got the hang of things. Later I realized he just wanted to make sure I could handle the scale so he could disappear for most of the night. Like I said, Den-Den wasn't exactly management material.`
@@ -1480,82 +1189,18 @@ function filterBooks(query) {
     document.getElementById('all-books-grid').innerHTML = filtered.map(bookCard).join('');
 }
 
-function toggleMobileMenu() {
-    var btn = document.getElementById('nav-hamburger');
-    var menu = document.getElementById('mobile-menu');
-    btn.classList.toggle('open');
-    menu.classList.toggle('open');
-}
-function closeMobileMenu() {
-    document.getElementById('nav-hamburger').classList.remove('open');
-    document.getElementById('mobile-menu').classList.remove('open');
-}
-function showPageMobile(page) {
-    showPage(page);
-    closeMobileMenu();
-}
-
 function showPage(page) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
     document.getElementById('page-' + page).classList.add('active');
-    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function(a) { a.classList.remove('active'); });
+    document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
     var navLink = document.getElementById('nav-' + page);
     if (navLink) navLink.classList.add('active');
-    var mnavLink = document.getElementById('mnav-' + page);
-    if (mnavLink) mnavLink.classList.add('active');
     window.scrollTo(0, 0);
     // Tell parent iframe to scroll to top too
     try { window.parent.postMessage({ type: 'scroll-top', source: 'words-and-wheels' }, '*'); } catch(e) {}
 }
 
 renderBooks();
-
-function submitContact(e) {
-    e.preventDefault();
-    var name = document.getElementById('contact-name').value.trim();
-    var email = document.getElementById('contact-email').value.trim();
-    var message = document.getElementById('contact-message').value.trim();
-    var btn = document.getElementById('contact-submit');
-    var errDiv = document.getElementById('contact-error');
-    
-    if (!name || !email || !message) {
-        errDiv.textContent = 'Please fill in all fields.';
-        errDiv.style.display = 'block';
-        return;
-    }
-    
-    btn.textContent = 'Sending...';
-    btn.disabled = true;
-    btn.style.opacity = '0.6';
-    errDiv.style.display = 'none';
-    
-    fetch('https://john-174a7c51.base44.app/functions/submitContactForm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: name, email: email, message: message })
-    })
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-        if (data.success) {
-            document.getElementById('contact-form').style.display = 'none';
-            document.getElementById('contact-success').style.display = 'block';
-        } else {
-            errDiv.textContent = data.message || 'Something went wrong.';
-            errDiv.style.display = 'block';
-            btn.textContent = 'Send Message';
-            btn.disabled = false;
-            btn.style.opacity = '1';
-        }
-    })
-    .catch(function() {
-        errDiv.textContent = 'Network error. Please try again.';
-        errDiv.style.display = 'block';
-        btn.textContent = 'Send Message';
-        btn.disabled = false;
-        btn.style.opacity = '1';
-    });
-}
-
 </script>
 
 <script>
