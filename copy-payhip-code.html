@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copy Payhip Code</title>
+<style>
+body { font-family: Arial, sans-serif; max-width: 800px; margin: 20px auto; padding: 20px; background: #f5f5f5; }
+h1 { font-size: 20px; color: #333; }
+textarea { width: 100%; height: 400px; font-family: monospace; font-size: 13px; padding: 12px; border: 2px solid #1a2a4a; border-radius: 6px; box-sizing: border-box; }
+button { background: #1a2a4a; color: #fff; border: none; padding: 12px 24px; font-size: 16px; border-radius: 6px; cursor: pointer; margin: 10px 0; }
+button:hover { background: #2a3a5a; }
+.note { color: #666; font-size: 14px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<h1>📋 Payhip Custom Code — Click to Copy</h1>
+<p class="note">Click the button below to copy all the code, then paste it into Payhip's Custom Code area.</p>
+<button onclick="copyCode()">📋 Copy All Code</button>
+<textarea id="codebox" readonly>!-- WORDS & WHEELS — Auto-Loader v8.2 --
+<!-- Paste this into Payhip's Custom Code area. -->
+<div id="waw-loader">
+  <div style="text-align:center;padding:60px 20px;font-family:Arial,sans-serif;color:#1a2a4a;">
+    <h2 style="font-size:22px;margin-bottom:8px;">Words and Wheels</h2>
+    <p style="color:#888;font-size:14px;">Loading…</p>
+  </div>
+</div>
+
+<script>
+(function() {
+  function hideChrome() {
+    document.querySelectorAll('header, nav').forEach(function(el) {
+      if (el.id !== 'waw-frame' && !el.contains(document.getElementById('waw-frame'))) {
+        el.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('footer, .footer, [class*="footer"], [class*="powered"]').forEach(function(el) {
+      if (el.id !== 'waw-frame' && !el.querySelector('#waw-frame')) {
+        el.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('[class*="hamburger"], [class*="menu-toggle"], [class*="menu-btn"], [class*="burger"], [class*="mobile-nav"], [class*="nav-toggle"], [aria-label*="menu" i], [aria-label*="Menu"], button[data-toggle], .navbar-toggle').forEach(function(el) {
+      if (el.id !== 'waw-frame' && !el.contains(document.getElementById('waw-frame'))) {
+        el.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('a').forEach(function(a) {
+      var t = (a.textContent || '').trim();
+      if (t === 'SHOP' || t === 'Shop' || t === 'PLAY GAMES' || t === 'PHRASEBOOKS' || t === 'CONTACT' || t === 'Contact') {
+        if (!a.closest('#waw-frame')) {
+          a.style.display = 'none';
+        }
+      }
+    });
+  }
+  hideChrome();
+  setTimeout(hideChrome, 500);
+  setTimeout(hideChrome, 1500);
+  setTimeout(hideChrome, 3000);
+
+  var container = document.getElementById('waw-loader');
+  var frame = document.createElement('iframe');
+  frame.src = 'https://resuter51-ops.github.io/spark-storefront/';
+  frame.style.cssText = 'width:100%;border:0;display:block;min-height:100vh;background:#fff;position:relative;z-index:1;';
+  frame.setAttribute('scrolling', 'no');
+  frame.setAttribute('id', 'waw-frame');
+  
+  frame.addEventListener('load', function() {
+    container.style.display = 'none';
+    hideChrome();
+    function resize() {
+      try {
+        var h = frame.contentWindow.document.body.scrollHeight;
+        frame.style.height = (h + 50) + 'px';
+      } catch(e) {}
+    }
+    resize();
+    setInterval(resize, 500);
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'resize' && e.data.height) {
+        frame.style.height = (e.data.height + 20) + 'px';
+      }
+      if (e.data && e.data.type === 'scroll-top' && e.data.source === 'words-and-wheels') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  });
+  
+  container.parentNode.replaceChild(frame, container);
+  hideChrome();
+})();
+</script></textarea>
+<br>
+<button onclick="copyCode()">📋 Copy All Code</button>
+<script>
+function copyCode() {
+  var t = document.getElementById('codebox');
+  t.select();
+  t.setSelectionRange(0, 99999);
+  document.execCommand('copy');
+  navigator.clipboard && navigator.clipboard.writeText(t.value);
+  alert('Copied! Now paste it into Payhip Custom Code area.');
+}
+</script>
+</body>
+</html>
