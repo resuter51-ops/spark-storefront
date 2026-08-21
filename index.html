@@ -678,14 +678,15 @@
         </div>
 
         <div class="comics-intro">
-            <h3>Strip 1: "The Diner"</h3>
-            <p>Zeke stops for coffee on a rainy night. Sometimes the people who need saving find you first.</p>
+            <h3 id="current-strip-title">Strip 1: "The Diner"</h3>
+            <p id="current-strip-desc">Zeke stops for coffee on a rainy night. Sometimes the people who need saving find you first.</p>
         </div>
 
-        <div class="comics-strip">
+        <!-- Strip 1: The Diner -->
+        <div class="comics-strip" id="strip-1" style="display:block;">
             <div class="comics-strip-title">
                 <span>THE SALVAGER &mdash; "The Diner"</span>
-                <span>Strip 1 of 1</span>
+                <span>Strip 1 of 2</span>
             </div>
             <div class="comics-grid">
                 <!-- Panel 1: Wide establishing shot -->
@@ -711,10 +712,48 @@
             </div>
         </div>
 
+        <!-- Strip 2: The Plate (Episode 10) -->
+        <div class="comics-strip" id="strip-2" style="display:none;">
+            <div class="comics-strip-title">
+                <span>THE SALVAGER &mdash; "The Plate"</span>
+                <span>Strip 2 of 2</span>
+            </div>
+            <div class="comics-grid">
+                <!-- Panel 1: Wide establishing shot -->
+                <div class="comics-panel comics-panel-wide">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/5b358b607_generated_image.png" alt="Panel 1">
+                    <div class="comic-bubble tail-bottom" style="top: 15px; left: 20px;">Rain never bothered me. Just meant fewer people out.</div>
+                </div>
+                <!-- Panel 2: Teenager enters -->
+                <div class="comics-panel">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/55d168646_generated_image.png" alt="Panel 2">
+                    <div class="comic-bubble tail-bottom" style="top: 10px; left: 10px; max-width: 70%;">A kid stepped in from the rain. Hesitant. Like he wasn't sure he belonged anywhere.</div>
+                </div>
+                <!-- Panel 3: Sliding the plate -->
+                <div class="comics-panel">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/1f9ed7cf4_generated_image.png" alt="Panel 3">
+                    <div class="comic-bubble tail-bottom" style="bottom: 10px; right: 10px; max-width: 65%;">I slid my plate across. Didn't look at him.</div>
+                </div>
+                <!-- Panel 4: Teenager's surprise -->
+                <div class="comics-panel comics-panel-wide">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/838087704_generated_image.png" alt="Panel 4">
+                    <div class="comic-bubble tail-left" style="bottom: 30px; left: 55%;">How did you know?</div>
+                </div>
+                <!-- Panel 5: Zeke's response -->
+                <div class="comics-panel comics-panel-wide">
+                    <img src="https://media.base44.com/images/public/69b1cf645256e83c174a7c51/5b0eb2058_generated_image.png" alt="Panel 5">
+                    <div class="comic-bubble tail-right" style="bottom: 40px; right: 50%;">When you get older, you'll know.</div>
+                </div>
+            </div>
+        </div>
+
         <div class="comics-nav">
-            <button onclick="showPage('books')">Browse Books</button>
-            <span class="strip-counter">Strip 1 of 1</span>
-            <button onclick="showPage('home')">Home</button>
+            <button onclick="prevStrip()">&#8592; Previous</button>
+            <span class="strip-counter" id="strip-counter">Strip 1 of 2</span>
+            <button onclick="nextStrip()">Next &#8594;</button>
+        </div>
+        <div style="text-align:center;margin-top:15px;">
+            <button onclick="showPage('books')" style="background:var(--navy);color:#fff;border:none;padding:10px 24px;border-radius:50px;font-size:13px;cursor:pointer;">Browse Books</button>
         </div>
     </div>
 </div>
@@ -1188,6 +1227,26 @@ function filterBooks(query) {
     });
     document.getElementById('all-books-grid').innerHTML = filtered.map(bookCard).join('');
 }
+
+var currentStrip = 1;
+var totalStrips = 2;
+var stripInfo = [
+    { title: 'Strip 1: "The Diner"', desc: 'Zeke stops for coffee on a rainy night. Sometimes the people who need saving find you first.' },
+    { title: 'Strip 2: "The Plate"', desc: 'A rainy night at the diner. A kid walks in from the cold. Zeke shares his plate — no questions asked.' }
+];
+function showStrip(n) {
+    currentStrip = n;
+    for (var i = 1; i <= totalStrips; i++) {
+        var s = document.getElementById('strip-' + i);
+        if (s) s.style.display = (i === n) ? 'block' : 'none';
+    }
+    document.getElementById('strip-counter').textContent = 'Strip ' + n + ' of ' + totalStrips;
+    document.getElementById('current-strip-title').textContent = stripInfo[n-1].title;
+    document.getElementById('current-strip-desc').textContent = stripInfo[n-1].desc;
+    document.getElementById('page-comics').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function nextStrip() { if (currentStrip < totalStrips) showStrip(currentStrip + 1); }
+function prevStrip() { if (currentStrip > 1) showStrip(currentStrip - 1); }
 
 function showPage(page) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
