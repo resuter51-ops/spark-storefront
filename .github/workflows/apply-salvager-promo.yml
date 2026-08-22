@@ -1,0 +1,82 @@
+name: Apply Salvager Book 4 launch promo
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/apply-salvager-promo.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-storefront:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out storefront
+        uses: actions/checkout@v4
+
+      - name: Update Book 1 giveaway and launch banner
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path('index.html')
+          html = path.read_text(encoding='utf-8')
+
+          # Update Book 1 price only inside the Book 1 object.
+          book1_start = html.index('title: "The Salvager: The Sister\'s Plea"')
+          book2_start = html.index('title: "The Salvager: The Runaway Daughter"')
+          book1 = html[book1_start:book2_start]
+          book1 = book1.replace('price: "$3.99"', 'price: "FREE"', 1)
+          book1 = book1.replace('payhip_url: "https://wordsandwheels.net/b/LT8JN"', 'payhip_url: "https://wordsandwheels.net/buy?link=cbYmu"', 1)
+          html = html[:book1_start] + book1 + html[book2_start:]
+
+          # Make Book 1 modal button say Get Free Book.
+          old = """    var buyLink = document.getElementById('modal-buy');
+              buyLink.href = book.payhip_url;
+          """
+          new = """    var buyLink = document.getElementById('modal-buy');
+              buyLink.href = book.payhip_url;
+              buyLink.textContent = (idx === 0) ? 'Get Free Book' : 'Buy Now';
+          """
+          if old in html:
+              html = html.replace(old, new, 1)
+
+          # Add a solid-blue launch banner to the Home page once.
+          if 'id="salvager-launch-promo"' not in html:
+              marker = '<!-- BOOKS PAGE -->'
+              marker_pos = html.index(marker)
+              home_close = html.rfind('</div>', 0, marker_pos)
+              promo = r'''
+
+    <!-- SALVAGER BOOK 4 LAUNCH PROMOTION -->
+    <section id="salvager-launch-promo" style="background:#1a2a4a;color:#fff;text-align:center;padding:42px 24px 46px;border-top:4px solid #d4a849;border-bottom:4px solid #d4a849;">
+        <div style="max-width:820px;margin:0 auto;">
+            <div style="font-family:Arial,sans-serif;font-size:13px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#d4a849;margin-bottom:8px;">Limited-Time Celebration</div>
+            <h2 style="font-family:Georgia,'Times New Roman',serif;font-size:38px;line-height:1.15;margin:0 0 12px;color:#fff;">FREE BOOK 1</h2>
+            <h3 style="font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:normal;color:#d4a849;margin:0 0 18px;">Celebrating the upcoming release of <em>The Salvager, Book 4</em></h3>
+            <p style="font-family:Arial,sans-serif;font-size:17px;line-height:1.65;max-width:700px;margin:0 auto 10px;color:rgba(255,255,255,.94);">To celebrate Book 4 arriving Friday, August 28, the digital edition of <strong>The Salvager, Book 1: A Sister's Plea</strong> is absolutely FREE through September 3.</p>
+            <p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;max-width:680px;margin:0 auto 24px;color:rgba(255,255,255,.78);">Meet Zeke Carter and Maya from the beginning, then be ready when their next chapter arrives.</p>
+            <a href="https://wordsandwheels.net/buy?link=cbYmu" target="_blank" style="display:inline-block;background:#d4a849;color:#0f1825;text-decoration:none;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;padding:14px 34px;border-radius:50px;box-shadow:0 5px 18px rgba(0,0,0,.25);">GET BOOK 1 FREE</a>
+            <div style="font-family:Arial,sans-serif;font-size:16px;font-weight:bold;margin-top:24px;color:#fff;">THE SALVAGER, BOOK 4 ARRIVES AUGUST 28</div>
+            <div style="font-family:Georgia,'Times New Roman',serif;font-size:16px;font-style:italic;margin-top:8px;color:rgba(255,255,255,.8);">One mission became a calling. One rescue became a war. And the story is far from over.</div>
+        </div>
+    </section>
+'''
+              html = html[:home_close] + promo + html[home_close:]
+
+          path.write_text(html, encoding='utf-8')
+
+      - name: Commit storefront promotion
+        run: |
+          git config user.name "Words & Wheels Site Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+          else
+            git commit -m "Launch Book 1 giveaway and Book 4 promotion"
+            git push
+          fi
