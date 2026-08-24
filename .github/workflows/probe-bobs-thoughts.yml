@@ -1,0 +1,40 @@
+name: Probe Bob's Thoughts sources
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/probe-bobs-thoughts.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Probe public discovery endpoints
+        run: |
+          rm -f bobs-thoughts-probe.txt
+          urls=(
+            'https://wordsandwheels.net/sitemap.xml'
+            'https://wordsandwheels.net/robots.txt'
+            'https://wordsandwheels.net/blog/bob-s-thoughts/feed'
+            'https://wordsandwheels.net/blog/bob-s-thoughts/rss'
+            'https://wordsandwheels.net/blog/bob-s-thoughts/feed.xml'
+            'https://r.jina.ai/https://wordsandwheels.net/blog/bob-s-thoughts'
+          )
+          for u in "${urls[@]}"; do
+            echo "===== $u =====" >> bobs-thoughts-probe.txt
+            curl -L --max-time 30 -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/151 Safari/537.36' -sS -D - "$u" | head -c 120000 >> bobs-thoughts-probe.txt || true
+            echo >> bobs-thoughts-probe.txt
+            echo >> bobs-thoughts-probe.txt
+          done
+      - name: Commit probe results
+        run: |
+          git config user.name "Words & Wheels Site Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add bobs-thoughts-probe.txt
+          git commit -m "Capture Bob's Thoughts discovery probe" || exit 0
+          git push
