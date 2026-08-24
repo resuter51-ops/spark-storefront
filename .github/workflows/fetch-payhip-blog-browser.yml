@@ -1,0 +1,42 @@
+name: Fetch Payhip blog with browser
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fetch-payhip-blog-browser.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fetch-blog-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch Bob's Thoughts with headless Chrome
+        run: |
+          set +e
+          google-chrome --version || chromium-browser --version || chromium --version
+          BROWSER=$(command -v google-chrome || command -v chromium-browser || command -v chromium)
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu \
+            --window-size=1400,1000 \
+            --virtual-time-budget=10000 \
+            --dump-dom "https://wordsandwheels.net/blog/bob-s-thoughts" \
+            > payhip-blog-browser.html 2> payhip-blog-browser-error.txt
+          "$BROWSER" --headless=new --no-sandbox --disable-gpu \
+            --window-size=1400,1000 \
+            --virtual-time-budget=10000 \
+            --screenshot=payhip-blog-browser.png \
+            "https://wordsandwheels.net/blog/bob-s-thoughts" \
+            >> payhip-blog-browser-error.txt 2>&1
+          echo "DOM bytes: $(wc -c < payhip-blog-browser.html 2>/dev/null || echo 0)"
+          echo "Screenshot bytes: $(wc -c < payhip-blog-browser.png 2>/dev/null || echo 0)"
+          exit 0
+      - name: Commit diagnostic copy
+        run: |
+          git config user.name "Words & Wheels Site Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add payhip-blog-browser.html payhip-blog-browser-error.txt payhip-blog-browser.png || true
+          git commit -m "Temporarily capture Payhip blog with browser" || exit 0
+          git push
