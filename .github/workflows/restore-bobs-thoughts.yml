@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - ".github/workflows/restore-bobs-thoughts.yml"
+      - "scripts/restore_bobs_thoughts.py"
 
 permissions:
   contents: write
