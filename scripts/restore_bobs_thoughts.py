@@ -4,13 +4,13 @@ from pathlib import Path
 path = Path("index-original.html")
 text = path.read_text(encoding="utf-8")
 start_marker = "        <!-- Blog post card -->"
-end_marker = "        <div class=\"section-nav\">"
+end_marker = "        <!-- Quick nav back to other sections -->"
 
 if start_marker not in text:
     raise SystemExit("Could not find the existing Bob's Thoughts card marker")
 start = text.index(start_marker)
 if end_marker not in text[start:]:
-    raise SystemExit("Could not find the Bob's Thoughts section navigation marker")
+    raise SystemExit("Could not find the Bob's Thoughts section end marker")
 end = text.index(end_marker, start)
 
 cards = """        <!-- Bob's Thoughts: all currently published public posts, newest first -->
