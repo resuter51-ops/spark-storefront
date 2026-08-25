@@ -1,5 +1,6 @@
 from pathlib import Path
 
+# One-time restoration of the published Bob's Thoughts list on the overlay.
 path = Path("index-original.html")
 text = path.read_text(encoding="utf-8")
 start_marker = "        <!-- Blog post card -->"
