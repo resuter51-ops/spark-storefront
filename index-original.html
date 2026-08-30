@@ -74,6 +74,33 @@
         }
         .nav-links a:hover { color: var(--gold); }
         .nav-links a.active { color: var(--gold); }
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: var(--gold);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
         /* HERO WITH BOOK SCENE */
         .hero {
             position: relative;
@@ -440,10 +467,27 @@
             .hero h1 { font-size: 34px; }
             .hero { min-height: 420px; }
             .nav-logo { font-size: 15px; letter-spacing: 0.5px; }
-            .nav-links { gap: 7px; flex-wrap: wrap; justify-content: center; }
-            .nav-links a { font-size: 11px; white-space: nowrap; padding: 2px 4px; }
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(26,42,74,0.98);
+                backdrop-filter: blur(12px);
+                padding: 16px 24px;
+                gap: 14px;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+            }
+            .nav-links.open { transform: translateY(0); }
+            .nav-links a { font-size: 16px; white-space: nowrap; padding: 6px 0; }
+            .nav-links li { width: 100%; }
             .about-grid { grid-template-columns: 1fr; gap: 32px; }
-            /* grid handled by !important rule above */
             .about-cards { grid-template-columns: 1fr; }
             .book-scene-strip { height: 120px; }
             .book-scene-strip .strip-text { padding-top: 40px; font-size: 15px; }
@@ -452,10 +496,9 @@
         }
         @media (max-width: 480px) {
             .nav-logo { font-size: 13px; }
-            .nav-links { gap: 4px; flex-wrap: wrap; }
-            .nav-links a { font-size: 10px; padding: 2px 3px; }
             .hero h1 { font-size: 28px; }
             .hero-btn { font-size: 13px; padding: 10px 22px; }
+            .book-grid { grid-template-columns: 1fr !important; }
         }
 
         /* BOOK DETAIL MODAL */
@@ -632,6 +675,11 @@
             <li><a href="https://resuter51-ops.github.io/bobs-jukebox/" target="_blank" id="nav-jukebox">Jukebox</a></li>
             <li><a href="https://resuter51-ops.github.io/bobs-book-arcade/phrasebooks.html" target="_blank" id="nav-phrasebooks">Phrasebooks</a></li>
         </ul>
+        <div class="hamburger" id="hamburger-btn" onclick="toggleNav()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 </nav>
 
@@ -1315,6 +1363,26 @@ function showStrip(n) {
 }
 function nextStrip() { if (currentStrip < totalStrips) showStrip(currentStrip + 1); }
 function prevStrip() { if (currentStrip > 1) showStrip(currentStrip - 1); }
+
+// Mobile hamburger menu toggle
+function toggleNav() {
+    var nav = document.getElementById('main-nav');
+    var btn = document.getElementById('hamburger-btn');
+    nav.classList.toggle('open');
+    btn.classList.toggle('active');
+}
+// Close mobile menu when a link is clicked
+document.addEventListener('DOMContentLoaded', function() {
+    var links = document.querySelectorAll('.nav-links a');
+    links.forEach(function(a) {
+        a.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                document.getElementById('main-nav').classList.remove('open');
+                document.getElementById('hamburger-btn').classList.remove('active');
+            }
+        });
+    });
+});
 
 function showPage(page) {
     document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
