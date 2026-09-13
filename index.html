@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Words & Wheels</title>
+<title>Words &amp; Wheels</title>
 <style>
 html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#fff}
 #storefront{position:fixed;inset:0;width:100%;height:100vh;border:0;background:#fff}
@@ -14,60 +14,21 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
 <script>
 (function(){
   var frame=document.getElementById('storefront');
+
   frame.addEventListener('load',function(){
     try{
-      var w=frame.contentWindow;
-      var d=w.document;
-      var freeUrl='https://wordsandwheels.net/buy?link=cbYmu';
+      var d=frame.contentWindow.document;
 
-      // Make Book 1 free on the visible storefront and point it to the working giveaway checkout.
-      if(w.books && w.books.length){
-        w.books[0].price='FREE';
-        w.books[0].payhip_url=freeUrl;
-        if(typeof w.renderBooks==='function') w.renderBooks();
-      }
+      // The Payhip page already supplies the public site header.
+      // Remove the older storefront header so visitors do not see two headers.
+      var oldHeader=d.querySelector('nav');
+      if(oldHeader) oldHeader.remove();
 
-      // Make the Book 1 detail button say exactly what it does.
-      if(typeof w.openBookModal==='function' && !w.__salvagerPromoModalPatched){
-        var originalOpen=w.openBookModal;
-        w.openBookModal=function(idx){
-          originalOpen(idx);
-          if(idx===0){
-            var buy=d.getElementById('modal-buy');
-            if(buy){
-              buy.href=freeUrl;
-              buy.textContent='Get Free Book';
-              buy.target='_top';
-            }
-          }
-        };
-        w.__salvagerPromoModalPatched=true;
-      }
-
-      // Add launch promotion to Home, directly beneath the existing hero.
-      if(!d.getElementById('salvager-launch-promo')){
-        var home=d.getElementById('page-home');
-        var hero=home && home.querySelector('.hero');
-        if(home && hero){
-          var promo=d.createElement('section');
-          promo.id='salvager-launch-promo';
-          promo.style.cssText='background:#1a2a4a;color:#fff;text-align:center;padding:42px 24px 46px;border-top:4px solid #d4a849;border-bottom:4px solid #d4a849;';
-          promo.innerHTML='\
-            <div style="max-width:820px;margin:0 auto;">\
-              <div style="font-family:Arial,sans-serif;font-size:13px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#d4a849;margin-bottom:8px;">Limited-Time Celebration</div>\
-              <h2 style="font-family:Georgia,Times New Roman,serif;font-size:38px;line-height:1.15;margin:0 0 12px;color:#fff;">FREE BOOK 1</h2>\
-              <h3 style="font-family:Georgia,Times New Roman,serif;font-size:22px;font-weight:normal;color:#d4a849;margin:0 0 18px;">Celebrating the upcoming release of <em>The Salvager, Book 4</em></h3>\
-              <p style="font-family:Arial,sans-serif;font-size:17px;line-height:1.65;max-width:700px;margin:0 auto 10px;color:rgba(255,255,255,.94);">To celebrate Book 4 arriving Friday, August 28, the digital edition of <strong>The Salvager, Book 1: A Sister\'s Plea</strong> is absolutely FREE through September 3.</p>\
-              <p style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;max-width:680px;margin:0 auto 24px;color:rgba(255,255,255,.78);">Meet Zeke Carter and Maya from the beginning, then be ready when their next chapter arrives.</p>\
-              <a href="'+freeUrl+'" target="_top" style="display:inline-block;background:#d4a849;color:#0f1825;text-decoration:none;font-family:Arial,sans-serif;font-size:18px;font-weight:bold;padding:14px 34px;border-radius:50px;box-shadow:0 5px 18px rgba(0,0,0,.25);">GET BOOK 1 FREE</a>\
-              <div style="font-family:Arial,sans-serif;font-size:16px;font-weight:bold;margin-top:24px;color:#fff;">THE SALVAGER, BOOK 4 ARRIVES AUGUST 28</div>\
-              <div style="font-family:Georgia,Times New Roman,serif;font-size:16px;font-style:italic;margin-top:8px;color:rgba(255,255,255,.8);">One mission became a calling. One rescue became a war. And the story is far from over.</div>\
-            </div>';
-          hero.insertAdjacentElement('afterend',promo);
-        }
-      }
+      // Remove any expired giveaway banner left by an older published version.
+      var expiredPromo=d.getElementById('salvager-launch-promo');
+      if(expiredPromo) expiredPromo.remove();
     }catch(err){
-      console.error('Words & Wheels promotion update failed:',err);
+      console.error('Words & Wheels cleanup failed:',err);
     }
   });
 
