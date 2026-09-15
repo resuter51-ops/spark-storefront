@@ -32,7 +32,9 @@ html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;background:#
     }
   });
 
-  frame.src='index-original.html?v=20260913-2';\n\n  // Forward storefront scroll requests to the Payhip overlay when embedded there.
+  frame.src='index-original.html?v=20260913-2';
+
+  // Forward storefront scroll requests to the Payhip overlay when embedded there.
   window.addEventListener('message',function(e){
     if(e.data && e.data.type==='scroll-top' && e.data.source==='words-and-wheels'){
       try{window.parent.postMessage(e.data,'*');}catch(err){}
