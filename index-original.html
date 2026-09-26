@@ -42,6 +42,18 @@
             height: 60px;
         }
         .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-logo img {
+            height: 38px;
+            width: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+        .nav-logo-text {
             font-size: 20px;
             font-weight: bold;
             color: var(--gold);
@@ -50,8 +62,8 @@
             cursor: pointer;
             font-family: Georgia, serif;
             white-space: nowrap;
-            flex-shrink: 0;
         }
+        .nav-logo { flex-shrink: 0; }
         .nav-inner {
             flex-wrap: wrap;
             height: auto;
@@ -665,10 +677,11 @@
 <!-- NAVBAR -->
 <nav>
     <div class="nav-inner">
-        <a class="nav-logo" onclick="showPage('home')">BOB'S UNIVERSE</a>
+        <a class="nav-logo" onclick="showPage('home')"><img src="covers/bobs-universe-logo.png" alt="Bob's Universe logo"><span class="nav-logo-text">BOB'S UNIVERSE</span></a>
         <ul class="nav-links" id="main-nav">
             <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
             <li><a onclick="showPage('books')" id="nav-books">Books</a></li>
+            <li><a href="https://bobsuniverse.love/christian-resources" id="nav-christian">Christian Resources</a></li>
             <li><a onclick="showPage('comics')" id="nav-comics">Comics</a></li>
             <li><a onclick="showPage('about')" id="nav-about">About</a></li>
             <li><a onclick="showPage('author')" id="nav-author">Author</a></li>
@@ -933,6 +946,7 @@
     <div class="footer-links">
         <a onclick="showPage('home')">Home</a>
         <a onclick="showPage('books')">Books</a>
+        <a href="https://bobsuniverse.love/christian-resources">Christian Resources</a>
         <a onclick="showPage('about')">About</a>
         <a onclick="showPage('comics')">Salvager Comics</a>
         <a onclick="showPage('author')">Author</a>
