@@ -648,7 +648,7 @@
 (function() {
   function fixPayhipNav() {
     // Find all links in the Payhip header
-    var links = document.querySelectorAll('header a, header nav a, [class*="nav"] a');
+    var links = document.querySelectorAll('header a, header nav a');
     links.forEach(function(a) {
       var text = a.textContent.trim().toUpperCase();
       if (text === 'PLAY GAMES') {
