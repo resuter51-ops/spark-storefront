@@ -1280,7 +1280,7 @@ The man studied him for a long beat. Then smiled. It didn't reach his eyes.
         title: "Happiness Finds Big Man",
         subtitle: "A heartwarming love story set in a nursing home",
         genre: "Fiction / Romance",
-        price: "$2.99",
+        price: "FREE",
         cover: "covers/book4-happiness.jpg?v=6",
         description: "A tender and uplifting story about two unlikely souls and the enduring power of human connection.",
         bestseller: true,
@@ -1291,7 +1291,7 @@ The man studied him for a long beat. Then smiled. It didn't reach his eyes.
         title: "Le bonheur trouve Big Man",
         subtitle: "The French edition of Happiness Finds Big Man",
         genre: "Fiction / Romance",
-        price: "$2.99",
+        price: "FREE",
         cover: "covers/book7-le-bonheur.jpg?v=1",
         description: "Une histoire tendre et \u00e9mouvante sur l'amour inattendu, les secondes chances, le deuil, la gu\u00e9rison, la famille que l'on choisit et un amour qui continue de fleurir sous un cerisier. \u00c9dition fran\u00e7aise de Happiness Finds Big Man.",
         bestseller: false,
@@ -1303,6 +1303,16 @@ Ce qui commence par une simple rencontre devient bient\u00f4t quelque chose qu'a
 Entour\u00e9s de r\u00e9sidents hauts en couleur et d'amis devenus une v\u00e9ritable famille, Big Man et Evie d\u00e9couvrent que l'amour ne respecte ni l'\u00e2ge, ni les circonstances, ni les plans que nous avions imagin\u00e9s pour notre vie.
 
 Ensemble, ils trouvent l'espoir, un nouveau but et une seconde chance au bonheur.`
+    },
+    {
+        title: "La Felicidad Encuentra a Big Man",
+        subtitle: "The Spanish edition of Happiness Finds Big Man",
+        genre: "Fiction / Romance",
+        price: "FREE",
+        cover: "covers/book8-la-felicidad.jpg?v=1",
+        description: "Big Man es grande en todos los sentidos: mide m\u00e1s de un metro noventa, pesa 345 libras y viaja en silla de ruedas. Pero su coraz\u00f3n es todav\u00eda m\u00e1s grande. En Happy Valley, la residencia donde vive, Big Man descubre que la risa llega hasta los rincones m\u00e1s insospechados, que los amigos aparecen cuando menos los esperas, y que la felicidad tambi\u00e9n encuentra a los hombres grandes. Una comedia c\u00e1lida, sincera y llena de coraz\u00f3n sobre la vida, la amistad y el amor.",
+        bestseller: false,
+        payhip_url: "https://bobsuniverse.love/b/7o6RM"
     },
     {
         title: "Just Another Typical Day in Valley Fair",
@@ -1345,6 +1355,7 @@ function openBookModal(idx) {
     document.getElementById('modal-price').textContent = book.price;
     var buyLink = document.getElementById('modal-buy');
     buyLink.href = book.payhip_url;
+    buyLink.textContent = book.price === 'FREE' ? 'Download Free' : 'Buy Now';
     var sampleBtn = document.getElementById('modal-sample-btn');
     if (book.sample) {
         currentSample = { title: book.title, text: book.sample, url: book.payhip_url };
