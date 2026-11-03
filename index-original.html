@@ -641,6 +641,11 @@
                 border-radius: 16px 16px 0 0;
             }
         }
+
+        /* 2026-11-02: keep the book detail modal inside the viewport on narrow screens */
+        .book-modal { overflow-x: hidden; }
+        .book-modal-footer { flex-wrap: wrap; }
+        .book-modal-buy { flex-shrink: 0; }
     </style>
 </head>
 <body>
@@ -734,6 +739,20 @@
 <!-- BOOKS PAGE -->
 <div class="page" id="page-books">
     <div class="section" style="padding-top:20px;">
+        <!-- NEW NOVEL PROMO (added 2026-11-02) -->
+        <div id="road-promo" style="display:flex;gap:20px;align-items:center;background:linear-gradient(135deg,#fff8ec,#fdf0dd);border:1px solid rgba(26,42,74,0.12);border-radius:16px;padding:18px;margin-bottom:24px;flex-wrap:wrap;">
+            <img src="https://covers2.booksamillion.com/covers/bam/9/79/823/711/9798237114997.jpg" alt="The Road Between Two Homes cover" style="width:120px;height:auto;border-radius:8px;box-shadow:0 6px 16px rgba(0,0,0,0.18);" onerror="this.style.display='none';">
+            <div style="flex:1;min-width:220px;">
+                <div style="font-size:11px;letter-spacing:2px;color:#b08d57;font-family:Arial,sans-serif;margin-bottom:6px;">NEW NOVEL &middot; PAPERBACK</div>
+                <h3 style="font-family:Georgia,serif;font-size:22px;color:#1a2a4a;margin:0 0 4px;font-weight:normal;">The Road Between Two Homes</h3>
+                <div style="font-style:italic;color:#b08d57;font-family:Arial,sans-serif;font-size:13px;margin-bottom:8px;">by A. A. Sanchez</div>
+                <p style="font-size:14px;color:#555;line-height:1.6;margin:0 0 12px;">Two homes. One heart. There is always a way. A new novel about family, roots, and the road between Colombia and New Jersey &mdash; from Bob's Universe.</p>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <a href="https://www.booksamillion.com/p/Road-Between-Two-Homes/A-Sanchez/9798237114997" target="_blank" style="background:#1a2a4a;color:#ffffff;text-decoration:none;padding:10px 20px;border-radius:50px;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;">English Paperback &middot; $11.99</a>
+                    <a href="https://www.amazon.com/dp/B0HK4T1T69" target="_blank" style="background:#d4a76a;color:#1a2a4a;text-decoration:none;padding:10px 20px;border-radius:50px;font-family:Arial,sans-serif;font-size:13px;font-weight:bold;">Edici&oacute;n en Espa&ntilde;ol</a>
+                </div>
+            </div>
+        </div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;">
             <h2 style="font-size:22px;color:var(--navy);font-weight:normal;">All Books</h2>
             <input type="text" id="search-input" placeholder="Search..." oninput="filterBooks(this.value)" style="background:white;border:2px solid rgba(26,42,74,0.12);border-radius:50px;padding:8px 18px;font-size:13px;width:200px;font-family:Arial,sans-serif;outline:none;">
